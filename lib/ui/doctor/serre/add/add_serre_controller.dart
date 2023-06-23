@@ -2,7 +2,7 @@ import 'package:detection/models/serre_model.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
-import '../../../services/serre_service.dart';
+import '../../../../services/serre_service.dart';
 
 class AddSerreController extends GetxController {
   List<String> natures = ['Fruits', 'Légumes', 'Plantes aromatiques'];

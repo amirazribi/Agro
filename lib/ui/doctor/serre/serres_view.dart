@@ -1,6 +1,6 @@
 import 'package:detection/ui/components/serre_item.dart';
-import 'package:detection/ui/serre/add/add_serre_view.dart';
-import 'package:detection/ui/serre/serre_controller.dart';
+import 'package:detection/ui/doctor/serre/add/add_serre_view.dart';
+import 'package:detection/ui/doctor/serre/serre_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,19 +26,7 @@ class SerresView extends StatelessWidget {
               onRemoveClicked: controller.removeSerre);
         },
       ))
-      /*controller.obx(
-          (data) => ListView.builder(
-                padding: EdgeInsets.all(16),
-                itemCount: data?.length ?? 0,
-                itemBuilder: (BuildContext context, int index) {
-                  return SerreItem(
-                      serre: data![index],
-                      onRemoveClicked: controller.removeSerre);
-                },
-              ),
-          onLoading: CircularProgressIndicator(),
-          onEmpty: Text("no data found"),
-          onError: (error) => Text(error ?? "unknown error"))*/,
+     ,
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {

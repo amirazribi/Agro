@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../utlis/constants.dart';
 import '../components/form_input_field_with_icon.dart';
 import '../components/label_button.dart';
 import '../components/primary_button.dart';
@@ -62,6 +63,15 @@ class RegisterView extends StatelessWidget {
                     authController.passwordController.text = value!,
                     maxLines: 1,
                   ),
+                  verticalSpaceMedium,
+                  DropdownButtonFormField(
+                    value: Constants.doctor,
+                      icon: Icon(Icons.settings_applications_rounded),
+                      items: Constants.roles.map((e) =>
+                      DropdownMenuItem(value: e, child: Text(e))).toList(),
+                      onChanged: (item) {
+                        authController.isDoctor = item == Constants.doctor;
+                      }),
                   verticalSpaceMedium,
                   PrimaryButton(
                       labelText: "S'inscrire",

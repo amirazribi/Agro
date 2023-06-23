@@ -5,14 +5,17 @@ class SerreModel {
   final bool isOrganic;
   final String? nature;
   final String? subNature;
+  final String? doctorId;
 
-  SerreModel(
-      {this.id,
-      this.name,
-      this.nature,
-      this.subNature,
-      this.date,
-      this.isOrganic = false});
+  SerreModel({
+    this.id,
+    this.name,
+    this.nature,
+    this.subNature,
+    this.date,
+    this.isOrganic = false,
+    this.doctorId,
+  });
 
   factory SerreModel.fromMap(Map<String, dynamic> data) {
     return SerreModel(
@@ -22,15 +25,18 @@ class SerreModel {
       nature: data["nature"],
       subNature: data["subNature"],
       isOrganic: data["isOrganic"] ?? false,
+      doctorId: data["doctorId"],
     );
   }
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "id": id,
         "name": name,
         "nature": nature,
         "subNature": subNature,
         "date": date,
         "isOrganic": isOrganic,
+        "doctorId": doctorId,
       };
 }

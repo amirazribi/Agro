@@ -1,16 +1,16 @@
+import 'package:detection/models/serre_model.dart';
+import 'package:detection/services/arrosage_service.dart';
 import 'package:detection/services/serre_service.dart';
 import 'package:get/get.dart';
 
-import '../../models/serre_model.dart';
-
-class SerreController extends GetxController with StateMixin<List<SerreModel>> {
+class FarmerController extends GetxController
+    with StateMixin<List<SerreModel>> {
   final service = Get.find<SerreService>();
-
-  final serres = <SerreModel>[].obs;
 
   @override
   onReady() {
-    serres.bindStream(service.watchSerres());
+    getSerres();
+    Get.put<ArrosageService>(ArrosageService());
   }
 
   getSerres() async {
@@ -25,10 +25,5 @@ class SerreController extends GetxController with StateMixin<List<SerreModel>> {
     } on Exception catch (e) {
       change(null, status: RxStatus.error("unknown error"));
     }
-  }
-
-  removeSerre(String? id) async {
-    service.removeSerre(id);
-    refresh();
   }
 }

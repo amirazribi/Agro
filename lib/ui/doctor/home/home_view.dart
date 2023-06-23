@@ -3,7 +3,7 @@ import 'package:detection/ui/components/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../auth/controllers/auth_controller.dart';
+import '../../auth/controllers/auth_controller.dart';
 import 'main_drawer.dart';
 
 class HomeView extends StatelessWidget {

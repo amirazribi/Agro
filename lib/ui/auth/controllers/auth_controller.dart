@@ -1,26 +1,29 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:detection/ui/auth/login_view.dart';
-import 'package:detection/ui/home/home_view.dart';
+import 'package:detection/ui/doctor/home/home_view.dart';
+import 'package:detection/ui/farmer/farmer_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../../../models/user_model.dart';
 import '../../components/loading.dart';
-
 
 class AuthController extends GetxController {
   static AuthController to = Get.find();
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  var isDoctor = true;
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   Rxn<User> firebaseUser = Rxn<User>();
   Rxn<UserModel> firestoreUser = Rxn<UserModel>();
-  final RxBool admin = false.obs;
+  final RxBool doctor = false.obs;
 
   @override
   void onReady() async {
@@ -44,14 +47,18 @@ class AuthController extends GetxController {
     //get user data from firestore
     if (_firebaseUser?.uid != null) {
       firestoreUser.bindStream(streamFirestoreUser());
-      await isAdmin();
+      //  await isDoctor();
     }
 
     if (_firebaseUser == null) {
       print('Send to signin');
       Get.offAll(LoginView());
     } else {
-      Get.offAll(HomeView());
+      if (doctor.isTrue) {
+        Get.offAll(HomeView());
+      } else {
+        Get.offAll(FarmerView());
+      }
     }
   }
 
@@ -89,7 +96,8 @@ class AuthController extends GetxController {
       hideLoadingIndicator();
     } catch (error) {
       hideLoadingIndicator();
-      Get.snackbar('auth.signInErrorTitle'.tr, 'auth.signInError'.tr,
+      Get.snackbar('Erreur de connexion',
+          " Échec de la connexion: e-mail ou mot de passe incorrect.",
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 7),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
@@ -108,7 +116,7 @@ class AuthController extends GetxController {
         print('uID: ' + result.user!.uid.toString());
         print('email: ' + result.user!.email.toString());
         //get photo url from gravatar if user has one
-       /* Gravatar gravatar = Gravatar(emailController.text);
+        /* Gravatar gravatar = Gravatar(emailController.text);
         String gravatarUrl = gravatar.imageUrl(
           size: 200,
           defaultImage: GravatarImage.retro,
@@ -119,8 +127,9 @@ class AuthController extends GetxController {
         UserModel _newUser = UserModel(
             uid: result.user!.uid,
             email: result.user!.email!,
-            name: nameController.text, photoUrl: '',
-        );
+            name: nameController.text,
+            photoUrl: '',
+            isDoctor: isDoctor);
         //create the user in firestore
         _createUserFirestore(_newUser, result.user!);
         emailController.clear();
@@ -129,7 +138,7 @@ class AuthController extends GetxController {
       });
     } on FirebaseAuthException catch (error) {
       hideLoadingIndicator();
-      Get.snackbar('auth.signUpErrorTitle'.tr, error.message!,
+      Get.snackbar('Échec de l\'inscription.', error.message!,
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 10),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
@@ -140,8 +149,9 @@ class AuthController extends GetxController {
   //handles updating the user when updating profile
   Future<void> updateUser(BuildContext context, UserModel user, String oldEmail,
       String password) async {
-    String _authUpdateUserNoticeTitle = 'auth.updateUserSuccessNoticeTitle'.tr;
-    String _authUpdateUserNotice = 'auth.updateUserSuccessNotice'.tr;
+    String _authUpdateUserNoticeTitle = 'Mise à jour l\'utilisateur';
+    String _authUpdateUserNotice =
+        'Informations sur l\'utilisateur mis à jour avec succès.';
     try {
       showLoadingIndicator();
       try {
@@ -157,11 +167,12 @@ class AuthController extends GetxController {
         //not yet working, see this issue https://github.com/delay/flutter_starter/issues/21
         if (err.toString() ==
             "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
-          _authUpdateUserNoticeTitle = 'auth.updateUserEmailInUse'.tr;
-          _authUpdateUserNotice = 'auth.updateUserEmailInUse'.tr;
+          _authUpdateUserNoticeTitle = 'Mise à jour l\'utilisateur';
+          _authUpdateUserNotice = 'Cette adresse e-mail a déjà un compte.';
         } else {
-          _authUpdateUserNoticeTitle = 'auth.wrongPasswordNotice'.tr;
-          _authUpdateUserNotice = 'auth.wrongPasswordNotice'.tr;
+          _authUpdateUserNoticeTitle = 'Échec de la connexion';
+          _authUpdateUserNotice =
+              'Le mot de passe ne correspond pas à nos dossiers.';
         }
       }
       hideLoadingIndicator();
@@ -178,13 +189,13 @@ class AuthController extends GetxController {
       String authError;
       switch (error.code) {
         case 'ERROR_WRONG_PASSWORD':
-          authError = 'auth.wrongPasswordNotice'.tr;
+          authError = 'Le mot de passe ne correspond pas à nos dossiers.';
           break;
         default:
-          authError = 'auth.unknownError'.tr;
+          authError = 'Erreur inconnue';
           break;
       }
-      Get.snackbar('auth.wrongPasswordNoticeTitle'.tr, authError,
+      Get.snackbar('Échec de la connexion', authError,
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 10),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
@@ -210,15 +221,15 @@ class AuthController extends GetxController {
     try {
       await _auth.sendPasswordResetEmail(email: emailController.text);
       hideLoadingIndicator();
-      Get.snackbar(
-          'auth.resetPasswordNoticeTitle'.tr, 'auth.resetPasswordNotice'.tr,
+      Get.snackbar('Réinitialiser le mot de passe e-mail envoyé',
+          'Vérifiez votre e-mail et suivez les instructions pour réinitialiser votre mot de passe.',
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 5),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
           colorText: Get.theme.snackBarTheme.actionTextColor);
     } on FirebaseAuthException catch (error) {
       hideLoadingIndicator();
-      Get.snackbar('auth.resetPasswordFailed'.tr, error.message!,
+      Get.snackbar('Réinitialiser le mot de passe Email Échec', error.message!,
           snackPosition: SnackPosition.BOTTOM,
           duration: Duration(seconds: 10),
           backgroundColor: Get.theme.snackBarTheme.backgroundColor,
@@ -227,17 +238,10 @@ class AuthController extends GetxController {
   }
 
   //check if user is an admin user
-  isAdmin() async {
-    await getUser.then((user) async {
-      DocumentSnapshot adminRef =
-      await _db.collection('admin').doc(user.uid).get();
-      if (adminRef.exists) {
-        admin.value = true;
-      } else {
-        admin.value = false;
-      }
-      update();
-    });
+  checkIsDoctor() async {
+    final user = await getFirestoreUser();
+    doctor.value = user.isDoctor;
+    update();
   }
 
   // Sign out

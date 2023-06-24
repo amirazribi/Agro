@@ -21,11 +21,29 @@ class HomeView extends StatelessWidget {
         appBar: AppBar(
           title: Text('Home'),
           actions: [
-            IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {
-                  Get.to(LoginView());
-                }),
+            PopupMenuButton(
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem<int>(value: 0, child: Text("Settings")),
+                  const PopupMenuItem<int>(value: 1, child: Text("Logout"))
+                ];
+              },
+              onSelected: (value) {
+                switch (value) {
+                  case 0:
+                    {
+                      break;
+                    }
+
+                  case 1:
+                    {
+                      controller.signOut();
+                      Get.offAll(LoginView());
+                      break;
+                    }
+                }
+              },
+            )
           ],
         ),
         drawer: MainDrawer(),

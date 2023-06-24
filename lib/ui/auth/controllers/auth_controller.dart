@@ -47,7 +47,7 @@ class AuthController extends GetxController {
     //get user data from firestore
     if (_firebaseUser?.uid != null) {
       firestoreUser.bindStream(streamFirestoreUser());
-      //  await isDoctor();
+        await checkIsDoctor();
     }
 
     if (_firebaseUser == null) {

@@ -3,7 +3,6 @@ import 'package:detection/ui/components/utils.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 import 'add_serre_controller.dart';
@@ -73,7 +72,6 @@ class AddSerreView extends StatelessWidget {
                     decoration: InputDecoration(
                         labelText: 'Comment les cellules sont cultivées ?'),
                     name: 'cultivation',
-                    validator: FormBuilderValidators.required(),
                     onChanged: (value) {
                       if (value == "Organique") {
                         controller.isOrganic.value = true;

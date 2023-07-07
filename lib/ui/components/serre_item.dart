@@ -1,6 +1,9 @@
 import 'package:detection/models/serre_model.dart';
 import 'package:detection/ui/components/utils.dart';
+import 'package:detection/ui/doctor/serre/detail/serre_detail_view.dart';
+import 'package:detection/utlis/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SerreItem extends StatelessWidget {
   final SerreModel serre;
@@ -14,7 +17,14 @@ class SerreItem extends StatelessWidget {
       elevation: 3,
       color: Colors.white60,
       child: ListTile(
-        leading: Text(serre.name ?? "" ,style: TextStyle(fontSize: 18),),
+        onTap: (){
+          Get.to(()=>SerreDetailView(),arguments: [
+            {
+              "model": serre,
+            }
+          ]);
+        },
+        leading: buildLeading(),
         title: Row(
 
           children: [
@@ -35,4 +45,14 @@ class SerreItem extends StatelessWidget {
       ),
     );
   }
+
+ Widget buildLeading() {
+    if(serre.nature?.toLowerCase() == Constants.tomato.toLowerCase()){
+      return Image.asset("assets/tomato.jpg");
+    }else if (serre.nature?.toLowerCase() == Constants.potato.toLowerCase()){
+      return Image.asset("assets/potato.jpg");
+    }else {
+      return Text(serre.name ?? "" ,style: TextStyle(fontSize: 18),);
+    }
+ }
 }

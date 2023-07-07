@@ -20,8 +20,8 @@ class FarmerView extends StatelessWidget {
           PopupMenuButton(
             itemBuilder: (context) {
               return [
-                const PopupMenuItem<int>(value: 0, child: Text("Settings")),
-                const PopupMenuItem<int>(value: 1, child: Text("Logout"))
+                const PopupMenuItem<int>(value: 0, child: Text("Parametres")),
+                const PopupMenuItem<int>(value: 1, child: Text("Se déconnecter"))
               ];
             },
             onSelected: (value) {

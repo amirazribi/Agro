@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
+import '../../../../utlis/constants.dart';
 import 'add_serre_controller.dart';
 
 class AddSerreView extends StatelessWidget {
@@ -47,11 +48,16 @@ class AddSerreView extends StatelessWidget {
                     onChanged: (val) {
                       controller.selectedNature.value = val;
                     },
-                    items: controller.natures
-                        .map((gender) => DropdownMenuItem(
+                    items: Constants.natures
+                        .map((nature) => DropdownMenuItem(
                               alignment: AlignmentDirectional.center,
-                              value: gender,
-                              child: Text(gender),
+                              value: nature,
+                              child: Row(
+                                children: [
+                                  Image.asset("assets/$nature.jpg"),
+                                  Text(nature),
+                                ],
+                              ),
                             ))
                         .toList(),
                   ),
@@ -61,7 +67,7 @@ class AddSerreView extends StatelessWidget {
                     onChanged: (date) {
                       controller.date.value = date.toString() ;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: 'Date de plantation',),
                     initialEntryMode: DatePickerEntryMode.calendarOnly,
                     inputType: InputType.date,

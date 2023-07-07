@@ -1,4 +1,5 @@
 import 'package:detection/ui/auth/login_view.dart';
+import 'package:detection/ui/doctor/serre/detail/serre_detail_view.dart';
 import 'package:detection/ui/splash_view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -25,6 +26,7 @@ class Pages {
     GetPage(name: '/reset-password', page: () => ResetPasswordView()),
     GetPage(name: "/farmer_view", page: ()=>FarmerView()),
     GetPage(name: "/arrosages", page: ()=>ArrosagesView()),
-    GetPage(name: "/add_arrosage", page:()=> AddArrosageView())
+    GetPage(name: "/add_arrosage", page:()=> AddArrosageView()),
+    GetPage(name: "/serre_detail", page:()=> SerreDetailView())
   ];
 }

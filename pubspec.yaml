@@ -42,6 +42,7 @@ dependencies:
   firebase_storage: ^11.2.2
   get_storage: ^2.1.1
   flutter_form_builder: ^7.6.0
+  carousel_slider: ^4.2.1
 
   form_builder_image_picker: ^3.1.0
   duration_picker: "^1.0.0"
@@ -73,6 +74,12 @@ flutter:
       - assets/farm.jpg
       - assets/tomato.jpg
       - assets/potato.jpg
+      - assets/1.jpg
+      - assets/2.jpg
+      - assets/3.jpg
+      - assets/carousel1.jpg
+      - assets/carousel2.jpg
+      - assets/carousel3.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

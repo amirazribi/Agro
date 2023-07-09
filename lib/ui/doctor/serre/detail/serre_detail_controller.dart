@@ -22,28 +22,72 @@ class SerreDetailController extends GetxController {
     final hs = Random().nextInt(75);
     final ha = Random().nextInt(50);
     Get.defaultDialog(
-        title: "Resultat de Detection",
-        content: Column(
-          children: [
-            const Text("La température :"),
-            Text("$temp ²C"),
-            Text("l'humidité de sol :"),
-            Text("$hs%"),
-            Text("l'humidité de l'air :"),
-            Text("$ha %"),
-            verticalSpaceMedium,
-            verticalSpaceTiny,
-          ],
+        title: "Données de Detection",
+        content: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const Text("La température : "),
+                  Text(
+                    "$temp °C",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      color: Colors.yellow.withRed(temp * 7),
+                    ),
+                  ),
+                ],
+              ),
+              verticalSpaceTiny,
+              Row(
+                children: [
+                  Text("L'humidité de sol : "),
+                  Text("$hs%",   style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.brown.withRed(hs * 7),
+                  ),),
+                ],
+              ),
+              verticalSpaceTiny,
+              Row(
+                children: [
+                  Text("L'humidité de l'air : "),
+                  Text("$ha %",   style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.blue.withRed(ha * 7),
+                  ),),
+                ],
+              ),
+              verticalSpaceMedium,
+              Row(
+                children: [
+                  Text("Date de la detection : "),
+                  Text("${DateTime.now().toString().substring(0,16)}",   style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),),
+                ],
+              ),
+            ],
+          ),
         ),
         cancel: PrimaryButton(
-          labelText: "Refaire",
+          labelText: "Recommencer",
           onPressed: () {
-           detectDialog();
+            Get.back();
+            detectDialog();
           },
         ),
         confirm: PrimaryButton(
           labelText: "Ok",
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ));
   }
 }

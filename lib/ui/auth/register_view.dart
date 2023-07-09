@@ -70,7 +70,7 @@ class RegisterView extends StatelessWidget {
                       items: Constants.roles.map((e) =>
                       DropdownMenuItem(value: e, child: Text(e))).toList(),
                       onChanged: (item) {
-                        authController.isDoctor = item == Constants.doctor;
+                        authController.isDoctor = item?.toLowerCase() == Constants.doctor.toLowerCase();
                       }),
                   verticalSpaceMedium,
                   PrimaryButton(

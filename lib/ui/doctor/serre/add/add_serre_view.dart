@@ -53,8 +53,11 @@ class AddSerreView extends StatelessWidget {
                               alignment: AlignmentDirectional.center,
                               value: nature,
                               child: Row(
+
                                 children: [
-                                  Image.asset("assets/$nature.jpg"),
+                                  Image.asset("assets/${nature.toLowerCase()}.jpg" , width: 45,
+                                  height:40),
+                                  horizontalSpaceMedium,
                                   Text(nature),
                                 ],
                               ),

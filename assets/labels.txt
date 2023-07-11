@@ -1,0 +1,2 @@
+0 tomate infecté
+1 tomate saine

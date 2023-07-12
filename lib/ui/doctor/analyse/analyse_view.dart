@@ -1,17 +1,22 @@
 
 import 'dart:io';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:detection/ui/components/primary_button.dart';
 import 'package:detection/ui/components/utils.dart';
+import 'package:detection/ui/doctor/analyse/analyse_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
+import 'package:get/get.dart';
 import '../home/main_drawer.dart';
-import 'package:tflite_flutter/tflite_flutter.dart' as tfl ;
+
 
 
 class AnalyseView extends StatelessWidget {
-   const AnalyseView({Key? key}) : super(key: key);
+    AnalyseView({Key? key}) : super(key: key);
+
+   final controller = Get.put(AnalyseController()) ;
 
   @override
   Widget build(BuildContext context) {
@@ -84,10 +89,10 @@ class AnalyseView extends StatelessWidget {
                   )),
               maxImages: 1,
               onChanged: (list){
-                image = list?.first ;
+                controller.image = File(list?.first.path) ;
               },
             ),
-            Text("Questionnaire"),
+           /* Text("Questionnaire"),
             FormBuilderRadioGroup(
               decoration: const InputDecoration(
                   labelStyle: TextStyle(
@@ -151,33 +156,16 @@ class AnalyseView extends StatelessWidget {
               ]
                   .map((lang) => FormBuilderFieldOption(value: lang))
                   .toList(growable: false),
-            ),
+            ),*/
             verticalSpaceNormal,
           PrimaryButton(
             labelText: "Analyser",
             onPressed: () async {
               // Obtenir l'image sélectionnée depuis le FormBuilderImagePicker
 
+controller.detectImage() ;
 
 
-              // Charger l'image et effectuer le prétraitement
-              final imageBytes = await image?.file.readAsBytes();
-              // Effectuer le prétraitement de l'image ici, par exemple, redimensionnement, normalisation des couleurs, etc.
-
-              // Charger le modèle
-              final interpreter = await tfl.Interpreter.fromAsset('assets/model_unquant.tflite');
-
-              // Effectuer l'inférence sur l'image
-              var output = List.filled(1*2, 0).reshape([1,2]);
-              interpreter.run(imageBytes,output);
-
-              // Analyser le résultat de l'inférence pour déterminer si la plante est infectée ou saine
-              // ...
-
-              // Afficher le résultat de l'analyse à l'utilisateur, par exemple, à l'aide d'une boîte de dialogue ou d'un message sur l'écran
-
-              // Fermer l'interpréteur du modèle
-              interpreter.close();
             },
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:detection/services/order_service.dart';
 import 'package:detection/services/serre_service.dart';
 import 'package:detection/ui/auth/controllers/auth_controller.dart';
 import 'package:detection/ui/components/loading.dart';
@@ -15,6 +16,7 @@ void main() async{
   await GetStorage.init();
   Get.put<AuthController>(AuthController());
   Get.put<SerreService>(SerreService(), permanent: true);
+  Get.put<OrderService>(OrderService(), permanent: true);
   runApp(const MyApp());
 }
 
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Loading(
       child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         navigatorObservers: const [
           // FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
         ],

@@ -2,6 +2,7 @@ import 'package:detection/ui/auth/controllers/auth_controller.dart';
 import 'package:detection/ui/auth/login_view.dart';
 import 'package:detection/ui/farmer/arrosage/arrosages_view.dart';
 import 'package:detection/ui/farmer/farmer_controller.dart';
+import 'package:detection/ui/farmer/orders/farm_orders_view.dart';
 import 'package:detection/ui/farmer/serre_farmer_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,14 +21,16 @@ class FarmerView extends StatelessWidget {
           PopupMenuButton(
             itemBuilder: (context) {
               return [
-                const PopupMenuItem<int>(value: 0, child: Text("Parametres")),
-                const PopupMenuItem<int>(value: 1, child: Text("Se déconnecter"))
+                const PopupMenuItem<int>(value: 0, child: Text("Commandes")),
+                const PopupMenuItem<int>(
+                    value: 1, child: Text("Se déconnecter"))
               ];
             },
             onSelected: (value) {
               switch (value) {
                 case 0:
                   {
+                    Get.to(() => FarmOrdersView());
                     break;
                   }
 
@@ -44,13 +47,13 @@ class FarmerView extends StatelessWidget {
       ),
       body: controller.obx(
           (data) => ListView.builder(
-                padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
                 itemCount: data?.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
                   return SerreFarmerItem(
                     serre: data![index],
                     onItemClick: () {
-                      Get.to(()=>ArrosagesView(), arguments: [
+                      Get.to(() => ArrosagesView(), arguments: [
                         {"model": data[index].toJson()}
                       ]);
                     },

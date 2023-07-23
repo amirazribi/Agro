@@ -1,3 +1,4 @@
+import 'package:detection/models/enum/user_type.dart';
 import 'package:detection/ui/auth/login_view.dart';
 import 'package:detection/ui/components/utils.dart';
 import 'package:flutter/material.dart';
@@ -65,12 +66,12 @@ class RegisterView extends StatelessWidget {
                   ),
                   verticalSpaceMedium,
                   DropdownButtonFormField(
-                    value: Constants.doctor,
-                      icon: Icon(Icons.settings_applications_rounded),
-                      items: Constants.roles.map((e) =>
-                      DropdownMenuItem(value: e, child: Text(e))).toList(),
+                    value: UserType.doctor,
+                      icon: const Icon(Icons.settings_applications_rounded),
+                      items: UserType.values.map((e) =>
+                      DropdownMenuItem(value: e, child: Text(e.name))).toList(),
                       onChanged: (item) {
-                        authController.isDoctor = item?.toLowerCase() == Constants.doctor.toLowerCase();
+                        authController.userType = item!;
                       }),
                   verticalSpaceMedium,
                   PrimaryButton(

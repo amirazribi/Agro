@@ -1,15 +1,18 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:detection/models/enum/user_type.dart';
 import 'package:detection/ui/auth/login_view.dart';
 import 'package:detection/ui/doctor/home/home_view.dart';
 import 'package:detection/ui/farmer/farmer_view.dart';
+import 'package:detection/ui/gross/gross_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../models/user_model.dart';
+import '../../client/client_view.dart';
 import '../../components/loading.dart';
 
 class AuthController extends GetxController {
@@ -17,13 +20,13 @@ class AuthController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  var isDoctor = true;
+  UserType userType = UserType.doctor ;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   Rxn<User> firebaseUser = Rxn<User>();
   Rxn<UserModel> firestoreUser = Rxn<UserModel>();
-  final RxBool doctor = false.obs;
+  final Rxn<UserType> type = Rxn<UserType>();
 
   @override
   void onReady() async {
@@ -47,18 +50,34 @@ class AuthController extends GetxController {
     //get user data from firestore
     if (_firebaseUser?.uid != null) {
       firestoreUser.bindStream(streamFirestoreUser());
-        await checkIsDoctor();
+        await checkUserType();
     }
 
     if (_firebaseUser == null) {
       print('Send to signin');
       Get.offAll(LoginView());
     } else {
-      if (doctor.isTrue) {
-        Get.offAll(HomeView());
-      } else {
-        Get.offAll(FarmerView());
+
+      switch(type.value){
+
+        case UserType.doctor:
+          Get.offAll(HomeView());
+          break;
+        case UserType.farmer:
+          Get.offAll(FarmerView());
+          break;
+        case UserType.client:
+          Get.offAll(()=>ClientView());
+          break;
+        case UserType.gross:
+          Get.offAll(()=>GrossView());
+          break;
+
+        case null :
+          printError(info: "type is null");
+              break;
       }
+
     }
   }
 
@@ -129,7 +148,7 @@ class AuthController extends GetxController {
             email: result.user!.email!,
             name: nameController.text,
             photoUrl: '',
-            isDoctor: isDoctor);
+            type: userType);
         //create the user in firestore
         _createUserFirestore(_newUser, result.user!);
         emailController.clear();
@@ -212,6 +231,7 @@ class AuthController extends GetxController {
   //create the firestore user in users collection
   void _createUserFirestore(UserModel user, User _firebaseUser) {
     _db.doc('/users/${_firebaseUser.uid}').set(user.toJson());
+    _firebaseUser.updateDisplayName(user.name);
     update();
   }
 
@@ -238,9 +258,9 @@ class AuthController extends GetxController {
   }
 
   //check if user is an admin user
-  checkIsDoctor() async {
+  checkUserType() async {
     final user = await getFirestoreUser();
-    doctor.value = user.isDoctor;
+    type.value = user.type;
     update();
   }
 

@@ -1,17 +1,21 @@
 //User Model
+import 'enum/user_type.dart';
+
 class UserModel {
   final String uid;
   final String email;
   final String name;
   final String? photoUrl;
-  final bool isDoctor;
+
+  UserType type ;
 
   UserModel(
       {required this.uid,
       required this.email,
       required this.name,
       required this.photoUrl,
-      this.isDoctor = false});
+        required this.type,
+     });
 
   factory UserModel.fromMap(Map data) {
     return UserModel(
@@ -19,7 +23,7 @@ class UserModel {
       email: data['email'] ?? '',
       name: data['name'] ?? '',
       photoUrl: data['photoUrl'] ?? '',
-      isDoctor: data['is_doctor'] ?? false,
+      type: UserType.fromJson(data["type"]),
     );
   }
 
@@ -29,6 +33,6 @@ class UserModel {
         "email": email,
         "name": name,
         "photoUrl": photoUrl,
-        "is_doctor": isDoctor,
+        "type": type.toJson(),
       };
 }

@@ -81,7 +81,7 @@ class AddOrderView extends StatelessWidget {
                         suffixText: "Kg"
                     ),
                     keyboardType: TextInputType.number,
-                    validator: (value) => int.parse(value ?? "0" ,onError: (value) =>0) == 0 ? "ajouter quantité" :null,
+                    validator: (value) => int.parse(value ?? "0" ) == 0 ? "ajouter quantité" :null,
                   ),
                   verticalSpaceMedium,
                   verticalSpaceNormal,
@@ -102,7 +102,7 @@ class AddOrderView extends StatelessWidget {
                                 quantity: int.parse(
                                     _formKey.currentState?.fields["quantity"]
                                         ?.value as String,
-                                    onError: (error) => 0),
+                                   ),
                                 clientId:
                                     FirebaseAuth.instance.currentUser?.uid,
                                 clientName: AuthController.to.firestoreUser.value?.name,

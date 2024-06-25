@@ -1,17 +1,17 @@
-import 'package:detection/models/serre_model.dart';
+import 'package:detection/models/consultation_model.dart';
 import 'package:get/get.dart';
 
-import '../../../../services/serre_service.dart';
+import '../../../../services/consultation_service.dart';
 
-class AddSerreController extends GetxController {
+class AddConsultationController extends GetxController {
   RxnString selectedNature = RxnString("");
   RxnString date = RxnString();
   RxnString name = RxnString("");
   RxnBool isOrganic = RxnBool();
-  final service = Get.find<SerreService>();
+  final service = Get.find<ConsultationService>();
 
-  addSerre() async {
-    return service.createSerre(SerreModel(
+  addConsultation() async {
+    return service.createConsultation(ConsultationModel(
       id: "",
       name: name.value,
       nature: selectedNature.value,

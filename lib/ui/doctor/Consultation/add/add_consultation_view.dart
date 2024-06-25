@@ -6,11 +6,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 import '../../../../utlis/constants.dart';
-import 'add_serre_controller.dart';
+import 'add_consultation_controller.dart';
 
-class AddSerreView extends StatelessWidget {
-  AddSerreView({Key? key}) : super(key: key);
-  final AddSerreController controller = Get.put(AddSerreController());
+class AddConsultationView extends StatelessWidget {
+  AddConsultationView({Key? key}) : super(key: key);
+  final AddConsultationController controller = Get.put(AddConsultationController());
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -18,7 +18,7 @@ class AddSerreView extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(title: Text("Ajouter Serre"),centerTitle: true,),
+      appBar: AppBar(title: Text("Ajouter consultation"),centerTitle: true,),
       body: FormBuilder(
         key: _formKey,
         child: SingleChildScrollView(
@@ -36,14 +36,14 @@ class AddSerreView extends StatelessWidget {
                           val; // Print the text value write into TextField
                     },
                     decoration: const InputDecoration(
-                      labelText: 'Nom serre',
+                      labelText: 'Nom patient',
                     ),
                   ),
                   verticalSpaceMedium,
                   FormBuilderDropdown<String>(
                     name: 'nature',
                     decoration: const InputDecoration(
-                      labelText: 'Nature plante',
+                      labelText: 'Nature maladie',
                     ),
                     onChanged: (val) {
                       controller.selectedNature.value = val;
@@ -71,7 +71,7 @@ class AddSerreView extends StatelessWidget {
                       controller.date.value = date.toString() ;
                     },
                     decoration: const InputDecoration(
-                        labelText: 'Date de plantation',),
+                        labelText: 'Date de consultation',),
                     initialEntryMode: DatePickerEntryMode.calendarOnly,
                     inputType: InputType.date,
 
@@ -100,7 +100,7 @@ class AddSerreView extends StatelessWidget {
                       width: double.infinity,
                       child: PrimaryButton(
                           labelText: "Ajouter", onPressed:() {
-                        controller.addSerre();
+                        controller.addConsultation();
                         Get.back();
                       }))
                 ],

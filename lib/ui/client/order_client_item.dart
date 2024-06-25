@@ -19,7 +19,7 @@ class OrderClientItem extends StatelessWidget {
         onTap: onItemClick,
         leading: Column(
           children: [
-            const Text("Agricultaire:", style: TextStyle(fontSize: 10)),
+            const Text("Agriculteur:", style: TextStyle(fontSize: 10)),
             Text(
               item.farmerName ?? "",
               style: TextStyle(fontSize: 18),

@@ -1,4 +1,4 @@
-class SerreModel {
+class ConsultationModel {
    String? id;
   final String? name;
   final String? date;
@@ -7,7 +7,7 @@ class SerreModel {
   final String? subNature;
   final String? doctorId;
 
-  SerreModel({
+  ConsultationModel({
     this.id,
     this.name,
     this.nature,
@@ -17,8 +17,8 @@ class SerreModel {
     this.doctorId,
   });
 
-  factory SerreModel.fromMap(Map<String, dynamic> data) {
-    return SerreModel(
+  factory ConsultationModel.fromMap(Map<String, dynamic> data) {
+    return ConsultationModel(
       id: data["id"],
       name: data["name"],
       date: data["date"],

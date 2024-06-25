@@ -3,15 +3,40 @@ import 'package:detection/ui/gross/gross_order_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../auth/controllers/auth_controller.dart';
+import '../auth/login_view.dart';
+
 class GrossView extends StatelessWidget {
   GrossView({Key? key}) : super(key: key);
   final controller = Get.put(GrossController());
-
+  final AuthController authController = AuthController.to;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Partie Gross"),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+
+                const PopupMenuItem<int>(
+                    value: 1, child: Text("Se déconnecter"))
+              ];
+            },
+            onSelected: (value) {
+              switch (value) {
+
+                case 1:
+                  {
+                    authController.signOut();
+                    Get.offAll(LoginView());
+                    break;
+                  }
+              }
+            },
+          )
+        ],
       ),
       body: Obx(() {
         final list = controller.orders;

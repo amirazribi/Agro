@@ -1,0 +1,18 @@
+{
+  "contractName": "Analysis",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_result",
+          "type": "string"
+        }
+      ],
+      "name": "saveAnalysisResult",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}

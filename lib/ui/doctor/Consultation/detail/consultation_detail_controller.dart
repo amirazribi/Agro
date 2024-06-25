@@ -1,19 +1,19 @@
 import 'dart:math';
 
-import 'package:detection/models/serre_model.dart';
+import 'package:detection/models/consultation_model.dart';
 import 'package:detection/ui/components/primary_button.dart';
 import 'package:detection/ui/components/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SerreDetailController extends GetxController {
+class ConsultationDetailController extends GetxController {
   dynamic argumentData = Get.arguments;
 
-  SerreModel? serre;
+  ConsultationModel? consultation;
 
   @override
   void onInit() {
-    serre = argumentData[0]["model"];
+    consultation = argumentData[0]["model"];
     super.onInit();
   }
 
@@ -22,14 +22,14 @@ class SerreDetailController extends GetxController {
     final hs = Random().nextInt(75);
     final ha = Random().nextInt(50);
     Get.defaultDialog(
-        title: "Données de Detection",
+        title: "Données de visite",
         content: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Row(
                 children: [
-                  const Text("La température : "),
+                  const Text("La tension : "),
                   Text(
                     "$temp °C",
                     style: TextStyle(
@@ -43,7 +43,7 @@ class SerreDetailController extends GetxController {
               verticalSpaceTiny,
               Row(
                 children: [
-                  Text("L'humidité de sol : "),
+                  Text("Diabéte : "),
                   Text("$hs%",   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -54,7 +54,7 @@ class SerreDetailController extends GetxController {
               verticalSpaceTiny,
               Row(
                 children: [
-                  Text("L'humidité de l'air : "),
+                  Text("Battement de coeur : "),
                   Text("$ha %",   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -65,7 +65,7 @@ class SerreDetailController extends GetxController {
               verticalSpaceMedium,
               Row(
                 children: [
-                  Text("Date de la detection : "),
+                  Text("Prix de la visite : "),
                   Text("${DateTime.now().toString().substring(0,16)}",   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,

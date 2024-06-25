@@ -13,7 +13,7 @@ class ArrosagesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("${controller.serre.name}"),
+        title: Text("${controller.consultation.name}"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -40,7 +40,7 @@ class ArrosagesView extends StatelessWidget {
                             onPressed: () {
                               Get.to(() => AddArrosageView(), arguments: [
                                 {
-                                  "id": controller.serre.id,
+                                  "id": controller.consultation.id,
                                   "model": list[index]
                                 }
                               ]);

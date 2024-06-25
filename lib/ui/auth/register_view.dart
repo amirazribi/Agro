@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../utlis/constants.dart';
 import '../components/form_input_field_with_icon.dart';
 import '../components/label_button.dart';
 import '../components/primary_button.dart';

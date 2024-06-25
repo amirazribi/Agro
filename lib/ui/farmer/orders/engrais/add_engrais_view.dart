@@ -55,7 +55,7 @@ class AddEngraisView extends StatelessWidget {
                     ),
                     keyboardType: TextInputType.number,
                     validator: (value) =>
-                        int.parse(value ?? "0", onError: (value) => 0) == 0
+                        int.parse(value ?? "0",) == 0
                             ? "ajouter quantité"
                             : null,
                   ),
@@ -86,7 +86,7 @@ class AddEngraisView extends StatelessWidget {
                                   quantity: int.parse(
                                       _formKey.currentState?.fields["quantity"]
                                           ?.value as String,
-                                      onError: (error) => 0),
+                                     ),
                                   farmerId:
                                       FirebaseAuth.instance.currentUser?.uid,
                                   farmerName: AuthController

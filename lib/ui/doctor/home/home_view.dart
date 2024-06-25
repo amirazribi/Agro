@@ -76,7 +76,7 @@ aspectRatio: 1.2,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: homeController.activeIndex.value == index
-                        ? Colors.green
+                        ? Colors.teal
                         : Colors.white,
                   ),
                 );

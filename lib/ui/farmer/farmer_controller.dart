@@ -1,28 +1,28 @@
-import 'package:detection/models/serre_model.dart';
+import 'package:detection/models/consultation_model.dart';
 import 'package:detection/services/arrosage_service.dart';
-import 'package:detection/services/serre_service.dart';
+import 'package:detection/services/consultation_service.dart';
 import 'package:get/get.dart';
 
 class FarmerController extends GetxController
-    with StateMixin<List<SerreModel>> {
-  final service = Get.find<SerreService>();
+    with StateMixin<List<ConsultationModel>> {
+  final service = Get.find<ConsultationService>();
 
   @override
   onReady() {
-    getSerres();
+    getConsultations();
     Get.put<ArrosageService>(ArrosageService());
   }
 
-  getSerres() async {
+  getConsultations() async {
     change(null, status: RxStatus.loading());
     try {
-      final data = await service.fetchSerres();
+      final data = await service.fetchConsultations();
       if (data.isEmpty) {
-        change(data, status: RxStatus.empty());
+        change(data.cast<ConsultationModel>(), status: RxStatus.empty());
       } else {
-        change(data, status: RxStatus.success());
+        change(data.cast<ConsultationModel>(), status: RxStatus.success());
       }
-    } on Exception catch (e) {
+    } on Exception {
       change(null, status: RxStatus.error("unknown error"));
     }
   }

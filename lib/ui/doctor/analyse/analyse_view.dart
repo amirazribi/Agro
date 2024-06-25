@@ -13,6 +13,7 @@ import '../home/main_drawer.dart';
 
 
 
+
 class AnalyseView extends StatelessWidget {
     AnalyseView({Key? key}) : super(key: key);
 

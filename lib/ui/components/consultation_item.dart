@@ -35,7 +35,7 @@ class ConsultationItem extends StatelessWidget {
         ),
         subtitle: Row(
           children: [
-            const Text("date de consultation :" ,style: TextStyle(fontSize: 12)),
+            const Text("Date de consultation :" ,style: TextStyle(fontSize: 12)),
             Text(consultation.date ?? "" ,style: TextStyle(fontSize: 12)),
           ],
         ),
@@ -48,9 +48,9 @@ class ConsultationItem extends StatelessWidget {
 
  Widget buildLeading() {
     if(consultation.nature?.toLowerCase() == Constants.tomato.toLowerCase()){
-      return Image.asset("assets/tomato.jpg");
+      return Image.asset("assets/yy.jpg");
     }else if (consultation.nature?.toLowerCase() == Constants.potato.toLowerCase()){
-      return Image.asset("assets/potato.jpg");
+      return Image.asset("assets/bb.jpg");
     }else {
       return Text(consultation.name ?? "" ,style: TextStyle(fontSize: 18),);
     }

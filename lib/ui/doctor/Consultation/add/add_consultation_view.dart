@@ -79,18 +79,18 @@ class AddConsultationView extends StatelessWidget {
                   verticalSpaceMedium,
                   FormBuilderRadioGroup(
                     decoration: InputDecoration(
-                        labelText: 'Comment les cellules sont cultivées ?'),
-                    name: 'cultivation',
+                        labelText: 'Quelle est le type de la maladie ?' ),
+                    name: 'maladie',
                     onChanged: (value) {
-                      if (value == "Organique") {
+                      if (value == "Chronique") {
                         controller.isOrganic.value = true;
                       }else{
                         controller.isOrganic.value = false ;
                       }
                     },
                     options: [
-                      'Organique',
-                      'Non Organique',
+                      'Chronique',
+                      'Non Chronique',
                     ]
                         .map((lang) => FormBuilderFieldOption(value: lang))
                         .toList(growable: false),

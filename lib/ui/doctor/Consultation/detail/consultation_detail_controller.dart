@@ -31,7 +31,7 @@ class ConsultationDetailController extends GetxController {
                 children: [
                   const Text("La tension : "),
                   Text(
-                    "$temp °C",
+                    "$temp Pa",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
@@ -44,7 +44,7 @@ class ConsultationDetailController extends GetxController {
               Row(
                 children: [
                   Text("Diabéte : "),
-                  Text("$hs%",   style: TextStyle(
+                  Text("$hs g/l",   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Colors.brown.withRed(hs * 7),
@@ -55,7 +55,7 @@ class ConsultationDetailController extends GetxController {
               Row(
                 children: [
                   Text("Battement de coeur : "),
-                  Text("$ha %",   style: TextStyle(
+                  Text("$ha bpm",   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Colors.blue.withRed(ha * 7),

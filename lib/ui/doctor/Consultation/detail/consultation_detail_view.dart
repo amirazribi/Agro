@@ -41,7 +41,7 @@ class ConsultationDetailView extends StatelessWidget {
               buildTrailing(),
               verticalSpaceSmall,
               PrimaryButton(
-                  labelText: "Detecter",
+                  labelText: "Afficher",
                   onPressed: () {
                     controller.detectDialog();
                   })
@@ -54,11 +54,11 @@ class ConsultationDetailView extends StatelessWidget {
 
   Widget buildLeading() {
     if (controller.consultation?.nature?.toLowerCase() ==
-        Constants.tomato.toLowerCase()) {
-      return Image.asset("assets/tomato.jpg");
+        Constants.Grippe.toLowerCase()) {
+      return Image.asset("assets/Grippe.jpg");
     } else if (controller.consultation?.nature?.toLowerCase() ==
-        Constants.potato.toLowerCase()) {
-      return Image.asset("assets/potato.jpg");
+        Constants.Maladiecardiovasculaire.toLowerCase()) {
+      return Image.asset("assets/Maladiecardiovasculaire.jpg");
     } else {
       return Text(
         controller.consultation?.name ?? "",
@@ -70,12 +70,12 @@ class ConsultationDetailView extends StatelessWidget {
   Widget buildTrailing() {
     if (controller.consultation?.isOrganic ?? false) {
       return Text(
-        "Cette plante est organique",
+        "Cette maladie est Chronique",
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
       );
     }
     return Text(
-      "Cette plante n'est pas organique",
+      "Cette maladie n'est pas Chronique",
       style: TextStyle(fontSize: 18),
     );
   }

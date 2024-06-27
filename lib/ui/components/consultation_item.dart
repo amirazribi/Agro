@@ -47,10 +47,10 @@ class ConsultationItem extends StatelessWidget {
   }
 
  Widget buildLeading() {
-    if(consultation.nature?.toLowerCase() == Constants.tomato.toLowerCase()){
-      return Image.asset("assets/yy.jpg");
-    }else if (consultation.nature?.toLowerCase() == Constants.potato.toLowerCase()){
-      return Image.asset("assets/bb.jpg");
+    if(consultation.nature?.toLowerCase() == Constants.Grippe.toLowerCase()){
+      return Image.asset("assets/Grippe.jpg");
+    }else if (consultation.nature?.toLowerCase() == Constants.Maladiecardiovasculaire.toLowerCase()){
+      return Image.asset("assets/Maladiecardiovasculaire.jpg");
     }else {
       return Text(consultation.name ?? "" ,style: TextStyle(fontSize: 18),);
     }

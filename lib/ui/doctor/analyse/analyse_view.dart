@@ -58,8 +58,8 @@ class AnalyseView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Rapprochez le plus possible la caméra de votre téléphone vers la feuille attaquée"
-                        " pour une bonne prise d'image. Votre photo/image ne doit contenir qu'une seule feuille (et pas toute la plante)."
+                        "Rapprochez le plus possible la caméra de votre téléphone vers l'image"
+                        " pour une bonne prise d'image. Votre photo/image ne doit contenir qu'une seule image."
                         "Elle doit être la plus clair possible.",
                         style: TextStyle(
                             color: Colors.green.withGreen(180),
@@ -79,7 +79,7 @@ class AnalyseView extends StatelessWidget {
                             horizontalSpaceSmall,
                             Icon(
                               Icons.camera_alt,
-                              color: Colors.green,
+                              color: Colors.teal,
                             ),
                             horizontalSpaceTiny,
                             Text("Prendre une photo"),

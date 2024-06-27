@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 
 class AddArrosageController extends GetxController {
   dynamic argumentData = Get.arguments;
-  late String serreId;
+  late String consultationId;
   ArrosageModel? model;
 
   @override
   void onInit() {
-    serreId = argumentData[0]["id"];
+    consultationId = argumentData[0]["id"];
     model = argumentData[0]["model"];
     super.onInit();
   }
@@ -25,7 +25,7 @@ class AddArrosageController extends GetxController {
 
   addArrosage() async {
     await service.createArrosage(ArrosageModel(
-        serreId: serreId,
+        consultationId: consultationId,
         name: name,
         date: date,
         duration: duration,
@@ -35,7 +35,7 @@ class AddArrosageController extends GetxController {
   updateArrosage()async {
     await service.updateArrosage(ArrosageModel(
       id: model?.id,
-        serreId: serreId,
+        consultationId: consultationId,
         name: name ?? model?.name,
         date: date ?? model?.date,
         duration: duration ?? model?.duration,

@@ -36,14 +36,14 @@ class AddConsultationView extends StatelessWidget {
                           val; // Print the text value write into TextField
                     },
                     decoration: const InputDecoration(
-                      labelText: 'Nom patient',
+                      labelText: 'Nom et prénom patient',
                     ),
                   ),
                   verticalSpaceMedium,
                   FormBuilderDropdown<String>(
                     name: 'nature',
                     decoration: const InputDecoration(
-                      labelText: 'Nature maladie',
+                      labelText: 'Nature de maladie',
                     ),
                     onChanged: (val) {
                       controller.selectedNature.value = val;

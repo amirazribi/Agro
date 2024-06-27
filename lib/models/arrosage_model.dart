@@ -1,7 +1,7 @@
 class ArrosageModel {
    String? id;
 
-  final String? serreId;
+  final String? consultationId;
 final String? name;
   final String? date;
   final String? duration;
@@ -10,7 +10,7 @@ final String? name;
 
   ArrosageModel({
     this.id,
-    this.serreId,
+    this.consultationId,
     this.name,
     this.date,
     this.duration,
@@ -20,7 +20,7 @@ final String? name;
   factory ArrosageModel.fromMap(Map<String, dynamic> data) {
     return ArrosageModel(
         id: data["id"],
-        serreId: data["serre_id"],
+        consultationId: data["consultation_id"],
         name: data["name"],
         date: data["date"],
         duration: data["duration"],
@@ -30,7 +30,7 @@ final String? name;
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "serre_id": serreId,
+      "consultation_id": consultationId,
       "name":name,
       "date": date,
       "duration": duration,

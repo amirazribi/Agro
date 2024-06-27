@@ -13,7 +13,7 @@ class MainDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             decoration: const BoxDecoration(
-              color: Colors.green,
+              color: Colors.teal,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,11 +34,11 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Serres'),
-            tileColor: Get.currentRoute == '/serres' ? Colors.grey[300] : null,
+            title: Text('Consultations'),
+            tileColor: Get.currentRoute == '/consultations' ? Colors.grey[300] : null,
             onTap: () {
 
-              Get.toNamed('/serres');
+              Get.toNamed('/consultations');
             },
           ),
           ListTile(

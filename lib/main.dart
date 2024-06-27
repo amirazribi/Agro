@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         ],
         initialRoute: "/",
         theme: ThemeData(
-          colorScheme: ColorScheme.light(primary: Colors.green),
+          colorScheme: ColorScheme.light(primary: Colors.teal),
         ),
         getPages: Pages.routes,
       ),

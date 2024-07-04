@@ -1,4 +1,5 @@
-import 'package:detection/ui/farmer/arrosage/add/add_arrosage_controller.dart';
+import 'package:detection/ui/infermier/rendezvous/add/add_rendezvous_controller.dart';
+import 'package:detection/ui/infermier/rendezvous/add/add_rendezvous_view.dart';
 import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -8,17 +9,17 @@ import '../../../../utlis/utils.dart';
 import '../../../components/primary_button.dart';
 import '../../../components/utils.dart';
 
-class AddArrosageView extends StatelessWidget {
+class AddRendezvousView extends StatelessWidget {
 
-  AddArrosageView({Key? key}) : super(key: key);
+  AddRendezvousView({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormBuilderState>();
-  final controller = Get.put(AddArrosageController());
+  final controller = Get.put(AddRendezvousController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: controller.model !=null ? const Text("Modifier Arrosage") : const Text("Ajouter Arrosage"),
+        title: controller.model !=null ? const Text("Modifier Rendezvous") : const Text("Ajouter Rendezvous"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -82,12 +83,12 @@ class AddArrosageView extends StatelessWidget {
                   child: controller.model !=null ? PrimaryButton(
                   labelText: "Modifier",
                   onPressed: () async {
-                    await controller.updateArrosage();
+                    await controller.updateRendezvous();
                     Get.back();
                   })  : PrimaryButton(
                       labelText: "Ajouter",
                       onPressed: () async {
-                        await controller.addArrosage();
+                        await controller.addRendezvous();
                         Get.back();
                       }))
             ],

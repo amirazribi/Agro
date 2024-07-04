@@ -1,4 +1,4 @@
-class ArrosageModel {
+class RendezvousModel {
    String? id;
 
   final String? consultationId;
@@ -6,25 +6,25 @@ final String? name;
   final String? date;
   final String? duration;
 
-  final String? farmerId;
+  final String? infermierId;
 
-  ArrosageModel({
+  RendezvousModel({
     this.id,
     this.consultationId,
     this.name,
     this.date,
     this.duration,
-    this.farmerId,
+    this.infermierId,
   });
 
-  factory ArrosageModel.fromMap(Map<String, dynamic> data) {
-    return ArrosageModel(
+  factory RendezvousModel.fromMap(Map<String, dynamic> data) {
+    return RendezvousModel(
         id: data["id"],
         consultationId: data["consultation_id"],
         name: data["name"],
         date: data["date"],
         duration: data["duration"],
-        farmerId: data["farmer_id"]);
+        infermierId: data["infermier_id"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -34,7 +34,7 @@ final String? name;
       "name":name,
       "date": date,
       "duration": duration,
-      "farmer_id": farmerId
+      "infermier_id": infermierId
     };
   }
 }

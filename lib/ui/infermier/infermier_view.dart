@@ -1,27 +1,27 @@
 import 'package:detection/ui/auth/controllers/auth_controller.dart';
 import 'package:detection/ui/auth/login_view.dart';
-import 'package:detection/ui/farmer/arrosage/arrosages_view.dart';
-import 'package:detection/ui/farmer/farmer_controller.dart';
-import 'package:detection/ui/farmer/orders/farm_orders_view.dart';
-import 'package:detection/ui/farmer/consultation_farmer_item.dart';
+import 'package:detection/ui/infermier/rendezvous/rendezvouss_view.dart';
+import 'package:detection/ui/infermier/infermier_controller.dart';
+import 'package:detection/ui/infermier/orders/inferm_orders_view.dart';
+import 'consultation_infermier_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FarmerView extends StatelessWidget {
-  FarmerView({Key? key}) : super(key: key);
-  final FarmerController controller = Get.put(FarmerController());
+class InfermierView extends StatelessWidget {
+  InfermierView({Key? key}) : super(key: key);
+  final InfermierController controller = Get.put(InfermierController());
   final AuthController authController = AuthController.to;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Partie Agriculteur"),
+        title: const Text("Partie Inférmier"),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) {
               return [
-                const PopupMenuItem<int>(value: 0, child: Text("Commandes")),
+                const PopupMenuItem<int>(value: 0, child: Text("Rendez-vous")),
                 const PopupMenuItem<int>(
                     value: 1, child: Text("Se déconnecter"))
               ];
@@ -30,7 +30,7 @@ class FarmerView extends StatelessWidget {
               switch (value) {
                 case 0:
                   {
-                    Get.to(() => FarmOrdersView());
+                    Get.to(() => InfermOrdersView());
                     break;
                   }
 
@@ -50,10 +50,10 @@ class FarmerView extends StatelessWidget {
             padding: const EdgeInsets.all(16),
                 itemCount: data?.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  return ConsultationFarmerItem(
+                  return ConsultationInfermierItem(
                     consultation: data![index],
                     onItemClick: () {
-                      Get.to(() => ArrosagesView(), arguments: [
+                      Get.to(() => RendezvoussView(), arguments: [
                         {"model": data[index].toJson()}
                       ]);
                     },

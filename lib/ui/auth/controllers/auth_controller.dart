@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:detection/models/enum/user_type.dart';
 import 'package:detection/ui/auth/login_view.dart';
 import 'package:detection/ui/doctor/home/home_view.dart';
-import 'package:detection/ui/farmer/farmer_view.dart';
+import 'package:detection/ui/infermier/infermier_view.dart';
 import 'package:detection/ui/gross/gross_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 import '../../../models/user_model.dart';
 import '../../client/client_view.dart';
 import '../../components/loading.dart';
+import '../../infermier/infermier_view.dart';
 
 class AuthController extends GetxController {
   static AuthController to = Get.find();
@@ -63,8 +64,8 @@ class AuthController extends GetxController {
         case UserType.doctor:
           Get.offAll(HomeView());
           break;
-        case UserType.farmer:
-          Get.offAll(FarmerView());
+        case UserType.infermier:
+          Get.offAll(InfermierView());
           break;
         case UserType.client:
           Get.offAll(()=>ClientView());

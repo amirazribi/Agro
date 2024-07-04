@@ -1,5 +1,4 @@
-import 'package:detection/ui/farmer/orders/engrais/engrai_order_controller.dart';
-import 'package:detection/ui/farmer/orders/order_farm_item.dart';
+import 'package:detection/ui/infermier/orders/engrais/engrai_order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +17,7 @@ class EngraisOrderView extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 itemCount: data?.length ?? 0,
                 itemBuilder: (BuildContext context, int index) {
-                  return OrderFarmerItem(
+                  return OrderInfermierItem(
                     item: data![index],
                     onItemClick: () {},
                   );

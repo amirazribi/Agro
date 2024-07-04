@@ -3,11 +3,11 @@ import 'package:detection/models/order_model.dart';
 import 'package:detection/ui/components/utils.dart';
 import 'package:flutter/material.dart';
 
-class OrderFarmerItem extends StatelessWidget {
+class OrderPatientItem extends StatelessWidget {
   final OrderModel item;
   final Function() onItemClick;
 
-  const OrderFarmerItem(
+  const OrderPatientItem(
       {Key? key, required this.item, required this.onItemClick})
       : super(key: key);
 

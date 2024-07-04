@@ -1,13 +1,13 @@
-import 'package:detection/ui/farmer/arrosage/add/add_arrosage_view.dart';
+import 'package:detection/ui/infermier/rendezvous/add/add_rendezvous_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'arrosages_controller.dart';
+import 'rendezvouss_controller.dart';
 
-class ArrosagesView extends StatelessWidget {
-  ArrosagesView({Key? key}) : super(key: key);
+class RendezvoussView extends StatelessWidget {
+  RendezvoussView({Key? key}) : super(key: key);
 
-  final controller = Get.put(ArrosagesController());
+  final controller = Get.put(RendezvoussController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ArrosagesView extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: StreamBuilder(
-            stream: controller.getArrosages(),
+            stream: controller.getRendezvouss(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
@@ -38,7 +38,7 @@ class ArrosagesView extends StatelessWidget {
                           trailing: IconButton(
                             icon: const Icon(Icons.edit),
                             onPressed: () {
-                              Get.to(() => AddArrosageView(), arguments: [
+                              Get.to(() => AddRendezvousView(), arguments: [
                                 {
                                   "id": controller.consultation.id,
                                   "model": list[index]
@@ -57,7 +57,7 @@ class ArrosagesView extends StatelessWidget {
             }),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: controller.navigateToAddArrosage,
+          onPressed: controller.navigateToAddRendezvous,
           child: const Icon(Icons.add)),
     );
   }

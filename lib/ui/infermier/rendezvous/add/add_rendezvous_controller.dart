@@ -1,12 +1,12 @@
-import 'package:detection/models/arrosage_model.dart';
-import 'package:detection/services/arrosage_service.dart';
+import 'package:detection/models/rendezvous_model.dart';
+import 'package:detection/services/rendezvous_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class AddArrosageController extends GetxController {
+class AddRendezvousController extends GetxController {
   dynamic argumentData = Get.arguments;
   late String consultationId;
-  ArrosageModel? model;
+  RendezvousModel? model;
 
   @override
   void onInit() {
@@ -21,25 +21,25 @@ class AddArrosageController extends GetxController {
 
   String? duration;
 
-  final service = Get.find<ArrosageService>();
+  final service = Get.find<RendezvousService>();
 
-  addArrosage() async {
-    await service.createArrosage(ArrosageModel(
+  addRendezvous() async {
+    await service.createRendezvous(RendezvousModel(
         consultationId: consultationId,
         name: name,
         date: date,
         duration: duration,
-        farmerId: FirebaseAuth.instance.currentUser?.uid));
+        infermierId: FirebaseAuth.instance.currentUser?.uid));
   }
 
-  updateArrosage()async {
-    await service.updateArrosage(ArrosageModel(
+  updateRendezvous()async {
+    await service.updateRendezvous(RendezvousModel(
       id: model?.id,
         consultationId: consultationId,
         name: name ?? model?.name,
         date: date ?? model?.date,
         duration: duration ?? model?.duration,
-        farmerId: FirebaseAuth.instance.currentUser?.uid
+        infermierId: FirebaseAuth.instance.currentUser?.uid
     ));
   }
 }

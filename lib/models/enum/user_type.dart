@@ -1,6 +1,6 @@
 enum  UserType {
   doctor ,
-  farmer ,
+  infermier ,
   client ,
   gross ;
 

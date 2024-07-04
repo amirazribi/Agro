@@ -19,10 +19,10 @@ class OrderGrossItem extends StatelessWidget {
         onTap: onItemClick,
         leading: Column(
           children: [
-            const Text("Agricultaire:",
+            const Text("Infermier:",
                 style: TextStyle(fontSize: 10)),
             Text(
-              item.farmerName ?? "",
+              item.infermierName ?? "",
               style: const TextStyle(fontSize: 18),
             ),
           ],

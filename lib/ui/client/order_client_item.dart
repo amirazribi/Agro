@@ -19,9 +19,9 @@ class OrderClientItem extends StatelessWidget {
         onTap: onItemClick,
         leading: Column(
           children: [
-            const Text("Agriculteur:", style: TextStyle(fontSize: 10)),
+            const Text("Infermier:", style: TextStyle(fontSize: 10)),
             Text(
-              item.farmerName ?? "",
+              item.infermierName ?? "",
               style: TextStyle(fontSize: 18),
             ),
           ],
@@ -35,14 +35,14 @@ class OrderClientItem extends StatelessWidget {
         ),
         subtitle: Row(
           children: [
-            const Text("date de commande :", style: TextStyle(fontSize: 10)),
+            const Text("date de rendez-vous :", style: TextStyle(fontSize: 10)),
             Text(item.date?.substring(0,16) ?? "", style: TextStyle(fontSize: 10)),
           ],
         ),
         trailing: Column(
           children: [
-            const Text("quantite:"),
-            Text("${item.quantity}Kg"),
+            const Text("prix:"),
+            Text("${item.quantity}DT"),
           ]
         ),
       ),

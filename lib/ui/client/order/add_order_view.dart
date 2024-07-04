@@ -51,9 +51,9 @@ class AddOrderView extends StatelessWidget {
                   verticalSpaceMedium,
                   Obx(
                     () => FormBuilderDropdown<UserModel>(
-                      name: 'farmer',
+                      name: 'patient',
                       decoration: const InputDecoration(
-                        labelText: 'Choisir agricultaire',
+                        labelText: 'Choisir patient',
                       ),
                       items: controller.users
                           .map((user) => DropdownMenuItem(
@@ -62,7 +62,7 @@ class AddOrderView extends StatelessWidget {
                               ))
                           .toList(),
                       validator: (user) =>
-                          user == null ? "choisir un agricultaire" : null,
+                          user == null ? "choisir un patient" : null,
                     ),
                   ),
                   FormBuilderTextField(
@@ -92,7 +92,7 @@ class AddOrderView extends StatelessWidget {
                           labelText: "Ajouter",
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              final UserModel farmer = _formKey.currentState?.fields["farmer"]?.value;
+                              final UserModel infermier = _formKey.currentState?.fields["infermier"]?.value;
                               await controller.addOrder(OrderModel(
                                 nature: _formKey
                                     .currentState?.fields["nature"]?.value,
@@ -100,14 +100,14 @@ class AddOrderView extends StatelessWidget {
                                     .currentState?.fields["address"]?.value,
                                 date: DateTime.now().toString(),
                                 quantity: int.parse(
-                                    _formKey.currentState?.fields["quantity"]
+                                    _formKey.currentState?.fields["paiment"]
                                         ?.value as String,
                                    ),
                                 clientId:
                                     FirebaseAuth.instance.currentUser?.uid,
                                 clientName: AuthController.to.firestoreUser.value?.name,
-                                farmerId: farmer.uid,
-                                farmerName: farmer.name
+                                  infermierId: infermier.uid,
+                                  infermierName: infermier.name
                               ));
                               Get.back();
                             }

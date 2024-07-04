@@ -1,21 +1,21 @@
 import 'package:detection/ui/components/primary_button.dart';
 import 'package:detection/ui/components/utils.dart';
-import 'package:detection/ui/farmer/orders/engrais/add_engrais_view.dart';
-import 'package:detection/ui/farmer/orders/engrais/engrais_order_view.dart';
-import 'package:detection/ui/farmer/orders/farm_orders_controller.dart';
-import 'package:detection/ui/farmer/orders/order_farm_item.dart';
+import 'package:detection/ui/infermier/orders/engrais/add_engrais_view.dart';
+import 'package:detection/ui/infermier/orders/engrais/engrais_order_view.dart';
+import 'package:detection/ui/infermier/orders/inferm_orders_controller.dart';
+import 'package:detection/ui/infermier/orders/order_inferm_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FarmOrdersView extends StatelessWidget {
-  FarmOrdersView({Key? key}) : super(key: key);
-  final controller = Get.put(FarmOrdersController());
+class InfermOrdersView extends StatelessWidget {
+  InfermOrdersView({Key? key}) : super(key: key);
+  final controller = Get.put(InfermOrdersController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: const Text("List des commandes"),
+            title: const Text("Liste des Rendez-vous"),
             centerTitle: true,
             actions: [
               Padding(
@@ -41,7 +41,7 @@ class FarmOrdersView extends StatelessWidget {
                     padding: EdgeInsets.all(8.0),
                     itemCount: list.length,
                     itemBuilder: (context, index) {
-                      return OrderFarmerItem(
+                      return OrderInfermierItem(
                         item: list[index],
                         onItemClick: () {
                           controller.onOrderClicked(list[index]);
@@ -51,7 +51,7 @@ class FarmOrdersView extends StatelessWidget {
               }),
             ),
             PrimaryButton(
-                labelText: "Passer Commande  Engrais ",
+                labelText: "Passer Rendez-vous ",
                 onPressed: () {
                   Get.to(() => AddEngraisView());
                 }),

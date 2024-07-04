@@ -87,9 +87,9 @@ class AddEngraisView extends StatelessWidget {
                                       _formKey.currentState?.fields["quantity"]
                                           ?.value as String,
                                      ),
-                                  farmerId:
+                                  infermierId:
                                       FirebaseAuth.instance.currentUser?.uid,
-                                  farmerName: AuthController
+                                  infermierName: AuthController
                                       .to.firestoreUser.value?.name,
                                   type: OrderType.engrais ,
                               engraisType: typeEngrais));

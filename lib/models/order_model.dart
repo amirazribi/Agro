@@ -12,9 +12,9 @@ class OrderModel {
   final String? nature;
   final String? clientName;
   final String? clientId;
-  final String? farmerName;
+  final String? infermierName;
 
-  final String? farmerId;
+  final String? infermierId;
   OrderStatus status;
 
   OrderType type;
@@ -28,8 +28,8 @@ class OrderModel {
       this.quantity = 0,
       this.clientName,
       this.clientId,
-      this.farmerName,
-      this.farmerId,
+      this.infermierName,
+      this.infermierId,
       this.status = OrderStatus.pending,
       this.type = OrderType.plante,
       this.engraisType});
@@ -43,8 +43,8 @@ class OrderModel {
         quantity: data["quantity"] ?? 0,
         clientId: data["clientId"],
         clientName: data["clientName"],
-        farmerName: data["farmerName"],
-        farmerId: data["farmerId"],
+        infermierName: data["infermierName"],
+        infermierId: data["infermierId"],
         status: OrderStatus.fromJson(data["status"]),
         type: OrderType.fromJson(data["type"]),
         engraisType:data["engraisType"]!=null ? EngraisType.fromJson(data["engraisType"]) : null);
@@ -57,9 +57,9 @@ class OrderModel {
         "date": date,
         "quantity": quantity,
         "clientId": clientId,
-        "farmerId": farmerId,
+        "infermierId": infermierId,
         "clientName": clientName,
-        "farmerName": farmerName,
+        "infermierName": infermierName,
         "status": status.toJson(),
         "type": type.toJson(),
         "engraisType": engraisType?.toJson()

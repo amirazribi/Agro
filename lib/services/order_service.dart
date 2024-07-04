@@ -28,7 +28,7 @@ class OrderService {
   Future<List<UserModel>> fetchFarmers() async {
     final snapshots = await _fireStore
         .collection("users")
-        .where("type", isEqualTo: UserType.farmer.name)
+        .where("type", isEqualTo: UserType.infermier.name)
         .get();
 
     return snapshots.docs.map((e) => UserModel.fromMap(e.data())).toList();
@@ -37,7 +37,7 @@ class OrderService {
   Future<List<OrderModel>> fetchFarmerOrders() async {
     final snapshots = await _fireStore
         .collection(collectionKey)
-        .where("farmerId", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+        .where("infermierId", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
         .where("type", isEqualTo: OrderType.engrais.name)
         .get();
 

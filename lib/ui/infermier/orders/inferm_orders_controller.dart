@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:detection/models/order_model.dart';
 import 'package:detection/services/order_service.dart';
@@ -10,7 +11,7 @@ import 'package:get/get.dart';
 import '../../../models/enum/order_status.dart';
 import '../../../models/enum/order_type.dart';
 
-class FarmOrdersController extends GetxController {
+class InfermOrdersController extends GetxController {
   final service = Get.find<OrderService>();
 
   RxList<OrderModel> orders = RxList();
@@ -25,10 +26,10 @@ class FarmOrdersController extends GetxController {
   getOrders() {
     service.watchOrders().listen((event) {
       orders.value = event.where((element) =>
-      element.farmerId == FirebaseAuth.instance.currentUser?.uid &&
+      element.infermierId == FirebaseAuth.instance.currentUser?.uid &&
           element.type == OrderType.plante).toList();
       counter.value = event.where((element) =>
-      element.farmerId == FirebaseAuth.instance.currentUser?.uid &&
+      element.infermierId == FirebaseAuth.instance.currentUser?.uid &&
           element.type == OrderType.engrais &&
           element.status != OrderStatus.pending).length;
     });
@@ -49,13 +50,13 @@ onOrderClicked(OrderModel order) {
             BorderedText(order.address)
           ]),
           Row(children: [
-            const Text("Quantité :"),
+            const Text("Prix :"),
             BorderedText(order.quantity.toString())
           ])
         ],
       ),
       confirm: PrimaryButton(
-          labelText: "Accepter",
+          labelText: "Confirmer",
           onPressed: () {
             service.changeOrderStatus(OrderStatus.accepted, order.id);
             Get.back();

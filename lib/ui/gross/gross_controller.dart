@@ -32,15 +32,15 @@ class GrossController extends GetxController {
         content: Column(
           children: [
             Row(children: [
-              const Text("Nom Agricultaire:"),
-              BorderedText(order.farmerName)
+              const Text("Nom Infermier:"),
+              BorderedText(order.infermierName)
             ]),
             Row(children: [
               const Text("Address :"),
               BorderedText(order.address)
             ]),
             Row(children: [
-              const Text("Quantité :"),
+              const Text("Prix :"),
               BorderedText(order.quantity.toString())
             ])
           ],

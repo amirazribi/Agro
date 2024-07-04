@@ -1,16 +1,16 @@
 import 'package:detection/models/consultation_model.dart';
-import 'package:detection/services/arrosage_service.dart';
+import 'package:detection/services/rendezvous_service.dart';
 import 'package:detection/services/consultation_service.dart';
 import 'package:get/get.dart';
 
-class FarmerController extends GetxController
+class InfermierController extends GetxController
     with StateMixin<List<ConsultationModel>> {
   final service = Get.find<ConsultationService>();
 
   @override
   onReady() {
     getConsultations();
-    Get.put<ArrosageService>(ArrosageService());
+    Get.put<RendezvousService>(RendezvousService());
   }
 
   getConsultations() async {

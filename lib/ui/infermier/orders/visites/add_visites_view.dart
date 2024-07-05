@@ -1,4 +1,4 @@
-import 'package:detection/models/enum/engrais_type.dart';
+import 'package:detection/models/enum/visites_type.dart';
 import 'package:detection/models/order_model.dart';
 import 'package:detection/services/order_service.dart';
 import 'package:detection/ui/components/utils.dart';
@@ -11,8 +11,8 @@ import '../../../../models/enum/order_type.dart';
 import '../../../auth/controllers/auth_controller.dart';
 import '../../../components/primary_button.dart';
 
-class AddEngraisView extends StatelessWidget {
-  AddEngraisView({Key? key}) : super(key: key);
+class AddVisitesView extends StatelessWidget {
+  AddVisitesView({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -20,7 +20,7 @@ class AddEngraisView extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ajouter Commande engrais"),
+        title: const Text("Ajouter patient"),
       ),
       body: FormBuilder(
         key: _formKey,
@@ -32,41 +32,41 @@ class AddEngraisView extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FormBuilderDropdown<EngraisType>(
-                    name: 'typeEngrais',
+                  FormBuilderDropdown<VisitesType>(
+                    name: 'typeMaladie',
                     decoration: const InputDecoration(
-                      labelText: 'Type du Engrais',
+                      labelText: 'Type du Maladie',
                     ),
-                    items: EngraisType.values
+                    items: VisitesType.values
                         .map((type) => DropdownMenuItem(
                               value: type,
                               child: Text(type.name),
                             ))
                         .toList(),
                     validator: (type) =>
-                        type == null ? "choisir type d'engrais" : null,
+                        type == null ? "choisir type de maladie" : null,
                   ),
                   verticalSpaceMedium,
                   FormBuilderTextField(
-                    name: 'quantity',
+                    name: 'prix',
                     decoration: const InputDecoration(
-                      labelText: 'Quantité',
-                      suffixText: "Kg"
+                      labelText: 'Prix',
+                      suffixText: "Dt"
                     ),
                     keyboardType: TextInputType.number,
                     validator: (value) =>
                         int.parse(value ?? "0",) == 0
-                            ? "ajouter quantité"
+                            ? "ajouter prix"
                             : null,
                   ),
                   verticalSpaceMedium,
                   FormBuilderTextField(
                     name: 'address',
                     decoration: const InputDecoration(
-                      labelText: 'Adresse de commande',
+                      labelText: 'Adresse de patient',
                     ),
                     validator: (address) => address == null
-                        ? "ajouter une adresse de commande"
+                        ? "ajouter une adresse du patient "
                         : null,
                   ),
                   verticalSpaceMedium,
@@ -74,17 +74,18 @@ class AddEngraisView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       PrimaryButton(
-                          labelText: "Valider Commande",
+                          labelText: "Valider",
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              final EngraisType typeEngrais = _formKey
-                                  .currentState?.fields["typeEngrais"]?.value;
+
+                              final VisitesType typeVisites = _formKey
+                                  .currentState?.fields["typeMaladie"]?.value;
                               Get.find<OrderService>().createOrder(OrderModel(
                                   address: _formKey
                                       .currentState?.fields["address"]?.value,
                                   date: DateTime.now().toString(),
-                                  quantity: int.parse(
-                                      _formKey.currentState?.fields["quantity"]
+                                  prix: int.parse(
+                                      _formKey.currentState?.fields["prix"]
                                           ?.value as String,
                                      ),
                                   infermierId:
@@ -92,7 +93,7 @@ class AddEngraisView extends StatelessWidget {
                                   infermierName: AuthController
                                       .to.firestoreUser.value?.name,
                                   type: OrderType.engrais ,
-                              engraisType: typeEngrais));
+                              visitesType: typeVisites));
                               Get.back();
                             }
                           }),

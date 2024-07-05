@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../components/utils.dart';
 
-class ConsultationFarmerItem extends StatelessWidget {
+class ConsultationInfermierItem extends StatelessWidget {
   final ConsultationModel consultation;
   final Function() onItemClick;
 
-  const ConsultationFarmerItem(
+  const ConsultationInfermierItem(
       {Key? key, required this.consultation, required this.onItemClick})
       : super(key: key);
 
@@ -24,7 +24,7 @@ class ConsultationFarmerItem extends StatelessWidget {
         ),
         title: Row(
           children: [
-            Text(consultation.nature ?? "", style: TextStyle(fontSize: 14)),
+            Text(consultation.nature ?? "", style: const TextStyle(fontSize: 14)),
             horizontalSpaceMedium,
             Text(consultation.subNature ?? ""),
           ],
@@ -32,7 +32,7 @@ class ConsultationFarmerItem extends StatelessWidget {
         subtitle: Row(
           children: [
             const Text("date de consultation :", style: TextStyle(fontSize: 12)),
-            Text(consultation.date ?? "", style: TextStyle(fontSize: 12)),
+            Text(consultation.date ?? "", style: const TextStyle(fontSize: 12)),
           ],
         ),
       ),

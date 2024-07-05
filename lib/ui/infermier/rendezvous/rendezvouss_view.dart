@@ -51,7 +51,7 @@ class RendezvoussView extends StatelessWidget {
                     });
               } else {
                 return const Center(
-                  child: Text("il n'ya pas des arrosages pour cette serre"),
+                  child: Text("il n'ya pas de rendezvous pour cette patient "),
                 );
               }
             }),

@@ -21,7 +21,7 @@ class AddOrderView extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ajouter Commande"),
+        title: const Text("Ajouter Rendez-vous"),
         centerTitle: true,
       ),
       body: FormBuilder(
@@ -37,51 +37,52 @@ class AddOrderView extends StatelessWidget {
                   FormBuilderDropdown<String>(
                     name: 'nature',
                     decoration: const InputDecoration(
-                      labelText: 'Nature du produit',
+                      labelText: 'Nature du maladie',
                     ),
                     items: Constants.natures
                         .map((nature) => DropdownMenuItem(
-                              value: nature,
-                              child: Text(nature),
-                            ))
+                      value: nature,
+                      child: Text(nature),
+                    ))
                         .toList(),
                     validator: (nature) =>
-                    nature == null ? "choisir un nature" : null,
+                    nature == null ? "Choisir une nature" : null,
                   ),
                   verticalSpaceMedium,
-                  Obx(
-                    () => FormBuilderDropdown<UserModel>(
-                      name: 'patient',
-                      decoration: const InputDecoration(
-                        labelText: 'Choisir patient',
-                      ),
-                      items: controller.users
-                          .map((user) => DropdownMenuItem(
-                                value: user,
-                                child: Text(user.name),
-                              ))
-                          .toList(),
-                      validator: (user) =>
-                          user == null ? "choisir un patient" : null,
-                    ),
-                  ),
+                  //Obx(
+                       // () => FormBuilderDropdown<UserModel>(
+                      //name: 'medcin',
+                     // decoration: const InputDecoration(
+                        ////labelText: 'Choisir medcin ',
+                      //),
+                      //items: controller.users
+                          //.map((user) => DropdownMenuItem(
+                              //  value: user,
+                                //child: Text(user.name),
+                              //))
+                          //.toList(),
+                          //validator: (user) =>
+                          //user == null ? "choisir un medcin" : null,
+                   // ),
+                  //),
                   FormBuilderTextField(
                     name: 'address',
                     decoration: const InputDecoration(
-                      labelText: 'Adresse de commande',
+                      labelText: 'Adresse de cabinet',
                     ),
                     validator: (address) =>
-                    address == null ? "ajouter une adresse de commande" : null,
+                    address == null ? "Ajouter une adresse " : null,
                   ),
                   verticalSpaceMedium,
                   FormBuilderTextField(
-                    name: 'quantity',
+                    name: 'paiment',
                     decoration: const InputDecoration(
-                      labelText: 'Quantité',
-                        suffixText: "Kg"
+                      labelText: 'Paiment',
+                      suffixText: "Dt",
                     ),
                     keyboardType: TextInputType.number,
-                    validator: (value) => int.parse(value ?? "0" ) == 0 ? "ajouter quantité" :null,
+                    validator: (value) =>
+                    int.tryParse(value ?? "0") == 0 ? "Ajouter paiment" : null,
                   ),
                   verticalSpaceMedium,
                   verticalSpaceNormal,
@@ -92,22 +93,24 @@ class AddOrderView extends StatelessWidget {
                           labelText: "Ajouter",
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              final UserModel infermier = _formKey.currentState?.fields["infermier"]?.value;
+                              final UserModel? patient =
+                                  _formKey.currentState?.fields["patient"]?.value;
                               await controller.addOrder(OrderModel(
-                                nature: _formKey
-                                    .currentState?.fields["nature"]?.value,
-                                address: _formKey
-                                    .currentState?.fields["address"]?.value,
-                                date: DateTime.now().toString(),
-                                quantity: int.parse(
+                                  nature: _formKey
+                                      .currentState?.fields["nature"]?.value,
+                                  address: _formKey
+                                      .currentState?.fields["address"]?.value,
+                                  date: DateTime.now().toString(),
+                                  prix: int.parse(
                                     _formKey.currentState?.fields["paiment"]
                                         ?.value as String,
-                                   ),
-                                clientId:
-                                    FirebaseAuth.instance.currentUser?.uid,
-                                clientName: AuthController.to.firestoreUser.value?.name,
-                                  infermierId: infermier.uid,
-                                  infermierName: infermier.name
+                                  ),
+                                  clientId: FirebaseAuth
+                                      .instance.currentUser?.uid,
+                                  clientName: AuthController
+                                      .to.firestoreUser.value?.name,
+                                  infermierId: patient?.uid,
+                                  infermierName: patient?.name ?? ""
                               ));
                               Get.back();
                             }

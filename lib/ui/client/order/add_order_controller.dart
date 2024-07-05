@@ -13,11 +13,11 @@ class AddOrderController extends GetxController {
 
   @override
   void onInit() {
-    fetchFarms();
+    fetchInfermier();
     super.onInit();
   }
 
-  fetchFarms() async {
-    users.value = await service.fetchFarmers();
+  fetchInfermier() async {
+    users.value = await service.fetchInfermiers();
   }
 }

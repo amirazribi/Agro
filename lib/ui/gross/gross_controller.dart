@@ -41,7 +41,7 @@ class GrossController extends GetxController {
             ]),
             Row(children: [
               const Text("Prix :"),
-              BorderedText(order.quantity.toString())
+              BorderedText(order.prix.toString())
             ])
           ],
         ),

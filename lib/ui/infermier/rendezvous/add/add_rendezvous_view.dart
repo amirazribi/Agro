@@ -1,5 +1,4 @@
 import 'package:detection/ui/infermier/rendezvous/add/add_rendezvous_controller.dart';
-import 'package:detection/ui/infermier/rendezvous/add/add_rendezvous_view.dart';
 import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -35,7 +34,7 @@ class AddRendezvousView extends StatelessWidget {
                   controller.name = val;
                 },
                 decoration: const InputDecoration(
-                  labelText: 'Nom Arrosage',
+                  labelText: 'Nom patient',
                 ),
               ),
               verticalSpaceMedium,
@@ -45,8 +44,8 @@ class AddRendezvousView extends StatelessWidget {
                 onChanged: (date) {
                   controller.date = date.toString();
                 },
-                decoration: InputDecoration(
-                  labelText: 'Date Arrosage',
+                decoration: const InputDecoration(
+                  labelText: 'Date consultation',
                 ),
                 initialEntryMode: DatePickerEntryMode.calendarOnly,
                 inputType: InputType.date,
@@ -63,17 +62,17 @@ class AddRendezvousView extends StatelessWidget {
                   return InputDecorator(
                     decoration: InputDecoration(
                       labelText: "Durée",
-                      contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                      contentPadding: const EdgeInsets.only(top: 10.0, bottom: 0.0),
                       border: InputBorder.none,
                       errorText: field.errorText,
                     ),
                     child: GestureDetector( onTap: ()async{
                       var resultingDuration = await showDurationPicker(
                         context: context,
-                        initialTime: Duration(minutes: 30),
+                        initialTime: const Duration(minutes: 30),
                       );
                       field.didChange( resultingDuration);
-                    }, child:  SizedBox(width: double.infinity, child: Text("${ Utils.printDuration(field.value) }"))),
+                    }, child:  SizedBox(width: double.infinity, child: Text(Utils.printDuration(field.value)))),
                   );
                 },
               ),

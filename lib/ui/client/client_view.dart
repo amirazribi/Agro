@@ -15,7 +15,7 @@ class ClientView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Partie Client"),
+        title: const Text("Partie Patient"),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) {
@@ -58,7 +58,7 @@ class ClientView extends StatelessWidget {
               } else {
                 return const Center(
                     child: Text(
-                  "il n'ya pas des commandes .\n vous pouvez ajouter une commande en cliquant sur le bouton +",
+                  "il n'ya pas des rendezvous .\n vous pouvez ajouter une endezvous en cliquant sur le bouton +",
                   textAlign: TextAlign.center,
                 ));
               }

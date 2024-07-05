@@ -1,7 +1,7 @@
 import 'package:detection/ui/components/primary_button.dart';
 import 'package:detection/ui/components/utils.dart';
-import 'package:detection/ui/infermier/orders/engrais/add_engrais_view.dart';
-import 'package:detection/ui/infermier/orders/engrais/engrais_order_view.dart';
+import 'package:detection/ui/infermier/orders/visites/add_visites_view.dart';
+import 'package:detection/ui/infermier/orders/visites/visites_order_view.dart';
 import 'package:detection/ui/infermier/orders/inferm_orders_controller.dart';
 import 'package:detection/ui/infermier/orders/order_inferm_item.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,7 @@ class InfermOrdersView extends StatelessWidget {
                   child: IconButton(
                     icon: const Icon(Icons.notifications),
                     onPressed: () {
-                      Get.to(()=>EngraisOrderView());
+                      Get.to(()=>VisitesOrderView());
                     },
                   ),
                 ),
@@ -53,7 +53,7 @@ class InfermOrdersView extends StatelessWidget {
             PrimaryButton(
                 labelText: "Passer Rendez-vous ",
                 onPressed: () {
-                  Get.to(() => AddEngraisView());
+                  Get.to(() => AddVisitesView());
                 }),
             verticalSpaceMedium,
           ],

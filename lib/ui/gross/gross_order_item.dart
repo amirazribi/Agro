@@ -29,23 +29,23 @@ class OrderGrossItem extends StatelessWidget {
         ),
         title: Row(
           children: [
-            const Text("Type engrais: ",
+            const Text("Type visites: ",
                 style: TextStyle(fontSize: 12)),
-            Text(item.engraisType?.name ?? "", style: const TextStyle(fontSize: 14)),
+            Text(item.visitesType?.name ?? "", style: const TextStyle(fontSize: 14)),
           ],
         ),
         subtitle: Row(
           children: [
-            const Text("date de commande :", style: TextStyle(fontSize: 12)),
+            const Text("date de consultation :", style: TextStyle(fontSize: 12)),
             Text(item.date?.substring(0,16) ?? "", style: const TextStyle(fontSize: 12)),
           ],
         ),
         trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          const Text("Quantité: ",
+          const Text("Prix: ",
               style: TextStyle(fontSize: 10)),
-          Text("${item.quantity}Kg"),
+          Text("${item.prix}Dt"),
         ]),
       ),
     );

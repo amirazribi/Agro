@@ -35,14 +35,14 @@ class OrderClientItem extends StatelessWidget {
         ),
         subtitle: Row(
           children: [
-            const Text("date de rendez-vous :", style: TextStyle(fontSize: 10)),
+            const Text("date de rendezvous :", style: TextStyle(fontSize: 10)),
             Text(item.date?.substring(0,16) ?? "", style: TextStyle(fontSize: 10)),
           ],
         ),
         trailing: Column(
           children: [
             const Text("prix:"),
-            Text("${item.quantity}DT"),
+            Text("${item.prix}DT"),
           ]
         ),
       ),

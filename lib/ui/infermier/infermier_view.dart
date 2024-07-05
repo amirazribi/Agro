@@ -7,6 +7,7 @@ import 'consultation_infermier_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 class InfermierView extends StatelessWidget {
   InfermierView({Key? key}) : super(key: key);
   final InfermierController controller = Get.put(InfermierController());

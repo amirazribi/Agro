@@ -14,7 +14,7 @@ class ConsultationModel {
     this.subNature,
     this.date,
     this.isOrganic = false,
-    this.doctorId,
+    this.doctorId, required ischronique,
   });
 
   factory ConsultationModel.fromMap(Map<String, dynamic> data) {
@@ -24,10 +24,12 @@ class ConsultationModel {
       date: data["date"],
       nature: data["nature"],
       subNature: data["subNature"],
-      isOrganic: data["isOrganic"] ?? false,
+      ischronique: data["ischronique"] ?? false,
       doctorId: data["doctorId"],
     );
   }
+
+  get ischronique => null;
 
   Map<String, dynamic> toJson() =>
       {
@@ -36,7 +38,7 @@ class ConsultationModel {
         "nature": nature,
         "subNature": subNature,
         "date": date,
-        "isOrganic": isOrganic,
+        "ischronique": ischronique,
         "doctorId": doctorId,
       };
 }

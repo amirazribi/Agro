@@ -3,11 +3,11 @@ import 'package:detection/models/order_model.dart';
 import 'package:detection/ui/components/utils.dart';
 import 'package:flutter/material.dart';
 
-class OrderPatientItem extends StatelessWidget {
+class OrderInfermierItem extends StatelessWidget {
   final OrderModel item;
   final Function() onItemClick;
 
-  const OrderPatientItem(
+  const OrderInfermierItem(
       {Key? key, required this.item, required this.onItemClick})
       : super(key: key);
 
@@ -20,7 +20,7 @@ class OrderPatientItem extends StatelessWidget {
         onTap: onItemClick,
         leading: Column(
           children: [
-            Text(item.type == OrderType.plante ? " Client:" : " Grossiste:",
+            Text(item.type == OrderType.plante ? " Client:" : " Infermier:",
                 style: TextStyle(fontSize: 10)),
             Text(
               item.clientName ?? "",
@@ -42,8 +42,8 @@ class OrderPatientItem extends StatelessWidget {
           ],
         ),
         trailing: Column(children: [
-          const Text("quantite:"),
-          Text("${item.quantity}Kg"),
+          const Text("prix:"),
+          Text("${item.prix}Dt"),
         ]),
       ),
     );

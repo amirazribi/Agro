@@ -16,7 +16,7 @@ class AddConsultationController extends GetxController {
       name: name.value,
       nature: selectedNature.value,
       date: "17/06/2023",
-      isOrganic: isOrganic.value ?? false
+      isOrganic: isOrganic.value ?? false, ischronique: null
     ));
   }
 }

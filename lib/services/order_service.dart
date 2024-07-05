@@ -10,9 +10,9 @@ import '../ui/auth/controllers/auth_controller.dart';
 
 class OrderService {
   static const collectionKey = "orders";
-  final _fireStore = FirebaseFirestore.instance;
+  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
-  Future createOrder(OrderModel model) async {
+  Future<void> createOrder(OrderModel model) async {
     final doc = _fireStore.collection(collectionKey).doc();
     model.id = doc.id;
 
@@ -34,38 +34,17 @@ class OrderService {
     return snapshots.docs.map((e) => UserModel.fromMap(e.data())).toList();
   }
 
-  Future<List<OrderModel>> fetchFarmerOrders() async {
-    final snapshots = await _fireStore
-        .collection(collectionKey)
-        .where("infermierId", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
-        .where("type", isEqualTo: OrderType.engrais.name)
-        .get();
-
-    return snapshots.docs.map((e) => OrderModel.fromMap(e.data())).toList();
-  }
-
   Stream<List<OrderModel>> watchEngraisOrders() {
     return _fireStore
         .collection(collectionKey)
         .where("type", isEqualTo: OrderType.engrais.name)
         .snapshots()
-        .map((event) {
-      List<OrderModel> orders = [];
-      orders
-          .addAll(event.docs.map((e) => OrderModel.fromMap(e.data())).toList());
-
-      return orders;
-    });
+        .map((event) => event.docs.map((e) => OrderModel.fromMap(e.data())).toList());
   }
 
   Stream<List<OrderModel>> watchOrders() {
-    return _fireStore.collection(collectionKey).snapshots().map((event) {
-      List<OrderModel> orders = [];
-      orders
-          .addAll(event.docs.map((e) => OrderModel.fromMap(e.data())).toList());
-
-      return orders;
-    });
+    return _fireStore.collection(collectionKey).snapshots().map(
+            (event) => event.docs.map((e) => OrderModel.fromMap(e.data())).toList());
   }
 
   Stream<List<OrderModel>> watchClientOrders() {
@@ -73,37 +52,36 @@ class OrderService {
         .collection(collectionKey)
         .where("clientId", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
         .snapshots()
-        .map((event) {
-      List<OrderModel> orders = [];
-      orders
-          .addAll(event.docs.map((e) => OrderModel.fromMap(e.data())).toList());
-
-      return orders;
-    });
+        .map(
+            (event) => event.docs.map((e) => OrderModel.fromMap(e.data())).toList());
   }
 
-  Future removeOrder(String? id) async {
+  Future<void> removeOrder(String? id) async {
     final doc = _fireStore.collection(collectionKey).doc(id);
 
     await doc.delete();
   }
 
-  Future updateOrder(OrderModel model) async {
+  Future<void> updateOrder(OrderModel model) async {
     final doc = _fireStore.collection(collectionKey).doc(model.id);
 
-    doc.update(model.toJson());
+    await doc.update(model.toJson());
   }
 
-  Future changeOrderStatus(OrderStatus status, String? id) async {
+  Future<void> changeOrderStatus(OrderStatus status, String? id) async {
     final doc = _fireStore.collection(collectionKey).doc(id);
-    doc.update({"status": status.toJson()});
+    await doc.update({"status": status.toJson()});
   }
 
-  Future changeEngraisOrderStatus(OrderStatus status, String? id) async {
+  Future<void> changeEngraisOrderStatus(OrderStatus status, String? id) async {
     final doc = _fireStore.collection(collectionKey).doc(id);
-    doc.update({
+    await doc.update({
       "status": status.toJson(),
       "clientName": AuthController.to.firestoreUser.value?.name
     });
   }
+
+  fetchInfermiers() {}
+
+  fetchInfermierOrders() {}
 }

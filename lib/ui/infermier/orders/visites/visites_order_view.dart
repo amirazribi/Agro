@@ -1,16 +1,17 @@
-import 'package:detection/ui/infermier/orders/engrais/engrai_order_controller.dart';
+import 'package:detection/ui/infermier/orders/visites/visit_order_controller.dart';
+import 'package:detection/ui/infermier/orders/order_inferm_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EngraisOrderView extends StatelessWidget {
-  EngraisOrderView({Key? key}) : super(key: key);
-  final controller = Get.put(EngraisOrderController());
+class VisitesOrderView extends StatelessWidget {
+  VisitesOrderView({Key? key}) : super(key: key);
+  final controller = Get.put(VisitesOrderController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Commandes des engrais"),
+        title: Text("les rende-zvous"),
       ),
       body: controller.obx(
           (data) => ListView.builder(

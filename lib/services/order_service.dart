@@ -25,7 +25,7 @@ class OrderService {
     return snapshots.docs.map((e) => OrderModel.fromMap(e.data())).toList();
   }
 
-  Future<List<UserModel>> fetchFarmers() async {
+  Future<List<UserModel>> fetchInfermiers() async {
     final snapshots = await _fireStore
         .collection("users")
         .where("type", isEqualTo: UserType.infermier.name)
@@ -34,10 +34,10 @@ class OrderService {
     return snapshots.docs.map((e) => UserModel.fromMap(e.data())).toList();
   }
 
-  Stream<List<OrderModel>> watchEngraisOrders() {
+  Stream<List<OrderModel>> watchVisitesOrders() {
     return _fireStore
         .collection(collectionKey)
-        .where("type", isEqualTo: OrderType.engrais.name)
+        .where("type", isEqualTo: OrderType.visites.name)
         .snapshots()
         .map((event) => event.docs.map((e) => OrderModel.fromMap(e.data())).toList());
   }
@@ -73,7 +73,7 @@ class OrderService {
     await doc.update({"status": status.toJson()});
   }
 
-  Future<void> changeEngraisOrderStatus(OrderStatus status, String? id) async {
+  Future<void> changeVisitesOrderStatus(OrderStatus status, String? id) async {
     final doc = _fireStore.collection(collectionKey).doc(id);
     await doc.update({
       "status": status.toJson(),
@@ -81,7 +81,12 @@ class OrderService {
     });
   }
 
-  fetchInfermiers() {}
-
-  fetchInfermierOrders() {}
+  Future<List<OrderModel>> fetchInfermierOrders() async {
+    final snapshots = await _fireStore
+        .collection(collectionKey)
+        .where("type", isEqualTo: OrderType.visites.name)
+        .where("status", isEqualTo: OrderStatus.pending.name)
+        .get();
+    return snapshots.docs.map((e) => OrderModel.fromMap(e.data())).toList();
+  }
 }

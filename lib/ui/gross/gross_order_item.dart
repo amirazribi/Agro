@@ -6,8 +6,7 @@ class OrderGrossItem extends StatelessWidget {
   final OrderModel item;
   final Function() onItemClick;
 
-  const OrderGrossItem(
-      {Key? key, required this.item, required this.onItemClick})
+  const OrderGrossItem({Key? key, required this.item, required this.onItemClick})
       : super(key: key);
 
   @override
@@ -19,34 +18,29 @@ class OrderGrossItem extends StatelessWidget {
         onTap: onItemClick,
         leading: Column(
           children: [
-            const Text("Infermier:",
-                style: TextStyle(fontSize: 10)),
-            Text(
-              item.infermierName ?? "",
-              style: const TextStyle(fontSize: 18),
-            ),
+            const Text("Infermier:", style: TextStyle(fontSize: 10)),
+            Text(item.infermierName ?? "", style: const TextStyle(fontSize: 18)),
           ],
         ),
         title: Row(
           children: [
-            const Text("Type visites: ",
-                style: TextStyle(fontSize: 12)),
+            const Text("Type visites:", style: TextStyle(fontSize: 12)),
             Text(item.visitesType?.name ?? "", style: const TextStyle(fontSize: 14)),
           ],
         ),
         subtitle: Row(
           children: [
-            const Text("date de consultation :", style: TextStyle(fontSize: 12)),
-            Text(item.date?.substring(0,16) ?? "", style: const TextStyle(fontSize: 12)),
+            const Text("Date de consultation:", style: TextStyle(fontSize: 12)),
+            Text(item.date?.substring(0, 16) ?? "", style: const TextStyle(fontSize: 12)),
           ],
         ),
         trailing: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-          const Text("Prix: ",
-              style: TextStyle(fontSize: 10)),
-          Text("${item.prix}Dt"),
-        ]),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Prix:", style: TextStyle(fontSize: 10)),
+            Text("${item.prix}Dt"),
+          ],
+        ),
       ),
     );
   }

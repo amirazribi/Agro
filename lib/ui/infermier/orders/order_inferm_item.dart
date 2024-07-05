@@ -20,7 +20,7 @@ class OrderInfermierItem extends StatelessWidget {
         onTap: onItemClick,
         leading: Column(
           children: [
-            Text(item.type == OrderType.plante ? " Client:" : " Infermier:",
+            Text(item.type == OrderType.plante ? " Client:" : " Grossiste:",
                 style: TextStyle(fontSize: 10)),
             Text(
               item.clientName ?? "",

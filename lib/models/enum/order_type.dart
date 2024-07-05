@@ -1,7 +1,7 @@
 enum OrderType {
 
   plante,
-  engrais;
+  engrais, visites;
 
 
   String toJson() => name;

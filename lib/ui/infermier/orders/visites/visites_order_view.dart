@@ -11,22 +11,22 @@ class VisitesOrderView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("les rende-zvous"),
+        title: Text("Les rendez-vous"),
       ),
       body: controller.obx(
-          (data) => ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: data?.length ?? 0,
-                itemBuilder: (BuildContext context, int index) {
-                  return OrderInfermierItem(
-                    item: data![index],
-                    onItemClick: () {},
-                  );
-                },
-              ),
+              (data) => ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: data?.length ?? 0,
+            itemBuilder: (BuildContext context, int index) {
+              return OrderInfermierItem(
+                item: data![index],
+                onItemClick: () {},
+              );
+            },
+          ),
           onLoading: const Center(child: CircularProgressIndicator()),
-          onEmpty: const Text("no data found"),
-          onError: (error) => Text(error ?? "unknown error")),
+          onEmpty: const Center(child: Text("No data found")),
+          onError: (error) => Center(child: Text(error ?? "unknown error"))),
     );
   }
 }

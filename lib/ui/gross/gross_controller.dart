@@ -10,21 +10,19 @@ import '../components/primary_button.dart';
 class GrossController extends GetxController {
   final service = Get.find<OrderService>();
 
-
   RxList<OrderModel> orders = RxList();
 
   @override
-  onInit() {
+  void onInit() {
     getOrders();
     super.onInit();
   }
 
   getOrders() {
-    service.watchEngraisOrders().listen((event) {
+    service.watchVisitesOrders().listen((event) {
       orders.value = event;
     });
   }
-
 
   onOrderClicked(OrderModel order) {
     Get.defaultDialog(
@@ -32,7 +30,7 @@ class GrossController extends GetxController {
         content: Column(
           children: [
             Row(children: [
-              const Text("Nom Infermier:"),
+              const Text("Nom med:"),
               BorderedText(order.infermierName)
             ]),
             Row(children: [
@@ -48,13 +46,13 @@ class GrossController extends GetxController {
         confirm: PrimaryButton(
             labelText: "Accepter",
             onPressed: () {
-              service.changeEngraisOrderStatus(OrderStatus.accepted, order.id);
+              service.changeVisitesOrderStatus(OrderStatus.accepted, order.id);
               Get.back();
             }),
         cancel: PrimaryButton(
             labelText: "Refuser",
             onPressed: () {
-              service.changeEngraisOrderStatus(OrderStatus.rejected, order.id);
+              service.changeVisitesOrderStatus(OrderStatus.rejected, order.id);
               Get.back();
             }));
   }

@@ -14,7 +14,7 @@ class GrossView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Partie Gross"),
+        title: const Text("Partie admistration"),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) {

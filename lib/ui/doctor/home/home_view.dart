@@ -52,10 +52,10 @@ class HomeView extends StatelessWidget {
                 homeController.imageSliders.map((e) => Image.asset(e , fit: BoxFit.fill,)).toList(),
             options: CarouselOptions(
               autoPlay: true,
-              height: double.maxFinite,
+              height:800,
               enlargeCenterPage: true,
               viewportFraction: 1,
-aspectRatio: 1.2,
+aspectRatio: 0.3,
               onPageChanged: (index, value)
                   {homeController.activeIndex.value = index ;
                   homeController.update();},

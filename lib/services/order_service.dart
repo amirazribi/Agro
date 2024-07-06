@@ -4,6 +4,7 @@ import 'package:detection/models/enum/user_type.dart';
 import 'package:detection/models/order_model.dart';
 import 'package:detection/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 import '../models/enum/order_type.dart';
 import '../ui/auth/controllers/auth_controller.dart';
@@ -39,7 +40,13 @@ class OrderService {
         .collection(collectionKey)
         .where("type", isEqualTo: OrderType.visites.name)
         .snapshots()
-        .map((event) => event.docs.map((e) => OrderModel.fromMap(e.data())).toList());
+        .map((event) {
+      final orders = event.docs.map((e) => OrderModel.fromMap(e.data())).toList();
+      if (kDebugMode) {
+        print("Fetched orders: $orders");
+      }
+      return orders;
+    });
   }
 
   Stream<List<OrderModel>> watchOrders() {

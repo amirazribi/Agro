@@ -18,13 +18,14 @@ class GrossController extends GetxController {
     super.onInit();
   }
 
-  getOrders() {
+  void getOrders() {
     service.watchVisitesOrders().listen((event) {
       orders.value = event;
+      print("Orders updated: ${orders.length}");
     });
   }
 
-  onOrderClicked(OrderModel order) {
+  void onOrderClicked(OrderModel order) {
     Get.defaultDialog(
         title: "Confirmation",
         content: Column(
@@ -48,12 +49,15 @@ class GrossController extends GetxController {
             onPressed: () {
               service.changeVisitesOrderStatus(OrderStatus.accepted, order.id);
               Get.back();
-            }),
+            }
+        ),
         cancel: PrimaryButton(
             labelText: "Refuser",
             onPressed: () {
               service.changeVisitesOrderStatus(OrderStatus.rejected, order.id);
               Get.back();
-            }));
+            }
+        )
+    );
   }
 }

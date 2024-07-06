@@ -8,7 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 import '../../../models/user_model.dart';
-import '../../../utlis/constants.dart';
+import 'package:detection/utlis/constants.dart';
 import '../../auth/controllers/auth_controller.dart';
 
 class AddOrderView extends StatelessWidget {

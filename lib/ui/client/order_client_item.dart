@@ -19,7 +19,7 @@ class OrderClientItem extends StatelessWidget {
         onTap: onItemClick,
         leading: Column(
           children: [
-            const Text("Infermier:", style: TextStyle(fontSize: 10)),
+            const Text("Nom et prénom:", style: TextStyle(fontSize: 10)),
             Text(
               item.infermierName ?? "",
               style: TextStyle(fontSize: 18),

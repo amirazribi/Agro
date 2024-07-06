@@ -63,10 +63,10 @@ class AddVisitesView extends StatelessWidget {
                   FormBuilderTextField(
                     name: 'address',
                     decoration: const InputDecoration(
-                      labelText: 'Adresse de patient',
+                      labelText: 'Adresse patient',
                     ),
                     validator: (address) => address == null
-                        ? "ajouter une adresse du patient "
+                        ? "ajouter une adresse patient "
                         : null,
                   ),
                   verticalSpaceMedium,
@@ -92,7 +92,7 @@ class AddVisitesView extends StatelessWidget {
                                       FirebaseAuth.instance.currentUser?.uid,
                                   infermierName: AuthController
                                       .to.firestoreUser.value?.name,
-                                  type: OrderType.engrais ,
+                                  type: OrderType.visites ,
                               visitesType: typeVisites));
                               Get.back();
                             }

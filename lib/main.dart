@@ -9,18 +9,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'consultationModel.dart';  // Importer le modèle ConsultationModel
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
   Get.put<AuthController>(AuthController());
   Get.put<ConsultationService>(ConsultationService(), permanent: true);
   Get.put<OrderService>(OrderService(), permanent: true);
-  // Charger l'ABI du contrat Ethereum à partir du fichier Analysis.json
-  final contractABI = await rootBundle.loadString("assets/Analysis.json");
+
+  // Charger l'ABI du contrat Ethereum à partir du fichier Consultation.json
+  final contractABI = await rootBundle.loadString("assets/contracts/Consultation.json");
   print(contractABI);
+
+  // Initialiser ConsultationModel et ajouter à GetX
+  ConsultationModel consultationModel = ConsultationModel();
+  await consultationModel.initiateSetup();  // Assurez-vous que le modèle est initialisé correctement
+  Get.put<ConsultationModel>(consultationModel, permanent: true);
+
   runApp(const MyApp());
 }
 

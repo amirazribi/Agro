@@ -1,5 +1,4 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:detection/models/order_model.dart';
 import 'package:detection/services/order_service.dart';
 import 'package:detection/ui/components/borderd_text.dart';
@@ -30,7 +29,7 @@ class InfermOrdersController extends GetxController {
           element.type == OrderType.plante).toList();
       counter.value = event.where((element) =>
       element.infermierId == FirebaseAuth.instance.currentUser?.uid &&
-          element.type == OrderType.engrais &&
+          element.type == OrderType.visites &&
           element.status != OrderStatus.pending).length;
     });
   }

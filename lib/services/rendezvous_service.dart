@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' ;
 import 'package:detection/models/rendezvous_model.dart';
 
 class RendezvousService {
@@ -24,10 +24,10 @@ class RendezvousService {
     await doc.delete();
   }
 
-  Stream<List<RendezvousModel>> watchRendezvouss(String? serreId) {
+  Stream<List<RendezvousModel>> watchRendezvouss(String? rendezvousId) {
     return _fireStore
         .collection(collectionKey)
-        .where("serre_id", isEqualTo: serreId)
+        .where("rendezvous_id", isEqualTo: rendezvousId)
         .snapshots()
         .map((event) {
       List<RendezvousModel> data = [];

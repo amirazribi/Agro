@@ -99,6 +99,7 @@ flutter:
       - assets/labels.txt
       - assets/model_unquant.tflite
       - assets/Analysis.json
+      - assets/contracts/Consultation.json
   #   - images/a_dot_ham.jpeg
 
 

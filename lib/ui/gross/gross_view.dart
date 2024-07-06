@@ -10,23 +10,22 @@ class GrossView extends StatelessWidget {
   GrossView({Key? key}) : super(key: key);
   final controller = Get.put(GrossController());
   final AuthController authController = AuthController.to;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Partie admistration"),
+        title: const Text("Partie administration"),
         actions: [
           PopupMenuButton(
             itemBuilder: (context) {
               return [
-
                 const PopupMenuItem<int>(
                     value: 1, child: Text("Se déconnecter"))
               ];
             },
             onSelected: (value) {
               switch (value) {
-
                 case 1:
                   {
                     authController.signOut();
@@ -40,11 +39,12 @@ class GrossView extends StatelessWidget {
       ),
       body: Obx(() {
         final list = controller.orders;
+        print("Orders in view: $list");
         if (list.isEmpty) {
-          return Text("pas de commandes engrais");
+          return const Text("pas rendez-vous");
         } else {
           return ListView.builder(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               itemCount: list.length,
               itemBuilder: (context, index) {
                 return OrderGrossItem(
@@ -59,3 +59,4 @@ class GrossView extends StatelessWidget {
     );
   }
 }
+

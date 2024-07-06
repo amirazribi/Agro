@@ -20,7 +20,7 @@ class OrderInfermierItem extends StatelessWidget {
         onTap: onItemClick,
         leading: Column(
           children: [
-            Text(item.type == OrderType.plante ? " Client:" : " Grossiste:",
+            Text(item.type == OrderType.plante ? " Client:" : " medcin:",
                 style: TextStyle(fontSize: 10)),
             Text(
               item.clientName ?? "",
@@ -36,7 +36,7 @@ class OrderInfermierItem extends StatelessWidget {
         ),
         subtitle: Row(
           children: [
-            const Text("date de commande :", style: TextStyle(fontSize: 10)),
+            const Text("date de consultation :", style: TextStyle(fontSize: 10)),
             Text(item.date?.substring(0, 16) ?? "",
                 style: TextStyle(fontSize: 10)),
           ],

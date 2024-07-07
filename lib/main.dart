@@ -20,7 +20,7 @@ void main() async {
   Get.put<OrderService>(OrderService(), permanent: true);
 
   // Charger l'ABI du contrat Ethereum à partir du fichier Consultation.json
-  final contractABI = await rootBundle.loadString("assets/contracts/Consultation.json");
+  final contractABI = await rootBundle.loadString("assets/Consultation.json");
   print(contractABI);
 
   // Initialiser ConsultationModel et ajouter à GetX

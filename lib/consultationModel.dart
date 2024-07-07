@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart';
 import 'package:web_socket_channel/io.dart';
@@ -33,7 +33,7 @@ class ConsultationModel {
   }
 
   Future<void> _getAbi() async {
-    String abiStringFile = await rootBundle.loadString('assets/contracts/Consultation.json');
+    String abiStringFile = await rootBundle.loadString('assets/consultation.json');
     var jsonAbi = jsonDecode(abiStringFile);
     _abiCode = jsonEncode(jsonAbi['abi']);
 
